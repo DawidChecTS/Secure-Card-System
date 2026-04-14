@@ -10,6 +10,7 @@ public :
     void userLogin();
     void userOperations();
     void printExit();
+    void welcomeUser();
 };
 
 
