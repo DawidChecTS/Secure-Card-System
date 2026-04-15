@@ -12,17 +12,15 @@ void UserMenu::showMainMenu(){
 
     headline();
     
-    cout << "[1] User \n";
-    cout << "[2] Admin \n";
-    cout << "[0] Exit \n";
+    displayEnteringOptions();
 
-    
     // Validate user input
     while (true){
         if(!(cin >> userChoice && isUserChoiceValidNumber(userChoice))){
             cout << "Invalid input!\n";
             cin.clear(); // reset
             cin.ignore(1000, '\n'); // remove input
+            displayEnteringOptions();
             continue;
         }
 
@@ -67,15 +65,14 @@ void UserMenu::userOperations(){
 
     headline();
     welcomeUser();
-    cout << "[1] List all available floors \n";
-    cout << "[2] Show personal information \n";
-    cout << "[0] Log out \n"; 
+    displayUserOperations();
 
     while (true){
         if (!(cin >> userChoice && (isUserChoiceValidNumber(userChoice)))){
             cout << "Invalid Input! \n";
             cin.clear();
             cin.ignore(1000, '\n');
+            displayUserOperations();
             continue;
         }
     
@@ -131,4 +128,16 @@ bool UserMenu::isUserChoiceValidNumber(int a){
     else {
         return false;
     }
+}
+
+void UserMenu::displayEnteringOptions(){
+    cout << "[1] User \n";
+    cout << "[2] Admin \n";
+    cout << "[0] Exit \n";
+}
+
+void UserMenu::displayUserOperations(){
+    cout << "[1] List all available floors \n";
+    cout << "[2] Show personal information \n";
+    cout << "[0] Log out \n"; 
 }

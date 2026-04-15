@@ -14,6 +14,8 @@ public :
     void listAllFloors();
     void showInfoAboutAccount();
     bool isUserChoiceValidNumber(int a);
+    void displayEnteringOptions();
+    void displayUserOperations();
 };
 
 
