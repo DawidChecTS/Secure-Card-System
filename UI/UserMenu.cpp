@@ -19,7 +19,7 @@ void UserMenu::showMainMenu(){
     
     // Validate user input
     while (true){
-        if(!(cin >> userChoice)){
+        if(!(cin >> userChoice && isUserChoiceValidNumber(userChoice))){
             cout << "Invalid input!\n";
             cin.clear(); // reset
             cin.ignore(1000, '\n'); // remove input
@@ -53,7 +53,6 @@ void UserMenu::userLogin(){
         if (cin >> id){
             break; // if input is valid, exit the loop
         }
-
         cout << "Invalid input! Please enter a number! \n";
         cin.clear();
         cin.ignore(1000, '\n');
@@ -63,12 +62,37 @@ void UserMenu::userLogin(){
 }
 
 void UserMenu::userOperations(){
+
+    int userChoice;
+
     headline();
     welcomeUser();
     cout << "[1] List all available floors \n";
     cout << "[2] Show personal information \n";
     cout << "[0] Log out \n"; 
+
+    while (true){
+        if (!(cin >> userChoice && (isUserChoiceValidNumber(userChoice)))){
+            cout << "Invalid Input! \n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            continue;
+        }
+    
+        switch (userChoice){
+            case 1 : 
+                listAllFloors();   
+                return;
+            case 2 :
+                showInfoAboutAccount();
+                return ;
+            case 0 :
+                printExit();
+                return;
+        }
+    }
 }
+    
 
 void UserMenu::adminLogin(){
     int id;
@@ -89,4 +113,22 @@ void UserMenu::printExit() {
 
 void UserMenu::welcomeUser(){
     cout << "Welcome User!\n";
+}
+
+void UserMenu::listAllFloors(){
+    cout << "All floors listed: \n";
+}
+
+void UserMenu::showInfoAboutAccount(){
+    cout << "Info about account: \n";
+}
+
+bool UserMenu::isUserChoiceValidNumber(int a){
+
+    if(a < 3 && a > -1){
+        return true;
+    }
+    else {
+        return false;
+    }
 }
