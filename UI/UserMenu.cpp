@@ -3,18 +3,18 @@
 
 using namespace std;
 
-void UserMenu::headline(){
+void Interface::headline(){
     cout << "----- SECURE CARD SYSTEM -------\n";
 }
 
-void UserMenu::showMainMenu(){
+void Interface::showMainMenu(){
 
     headline();
     
     displayEnteringOptions();
 }
 
-void UserMenu::userLogin(){
+void Interface::userLogin(){
     int id;
     
     headline();
@@ -33,7 +33,7 @@ void UserMenu::userLogin(){
     }
 }
 
-void UserMenu::userOperations(){
+void Interface::userOperations(){
 
     int userChoice;
 
@@ -52,7 +52,7 @@ void UserMenu::userOperations(){
     }
 }
 
-void UserMenu::adminOperations(){
+void Interface::adminOperations(){
     int userChoice;
     headline();
     welcomeUser();
@@ -69,7 +69,7 @@ void UserMenu::adminOperations(){
     }
 }
 
-void UserMenu::adminLogin(){
+void Interface::adminLogin(){
     int id;
     string password;
 
@@ -79,52 +79,64 @@ void UserMenu::adminLogin(){
     cin >> id;
     cout << "Enter password: \n";
     cin >> password;
-    cout << "[0] Exit \n";
 }
 
-void UserMenu::printExit() {
+void Interface::printExit() {
     cout << "You choose to Exit the Secure Card System!\n";
 }
 
-void UserMenu::printLogOut() {
+void Interface::printLogOut() {
     cout << "You are logging out.";
 }
 
-void UserMenu::welcomeUser(){
+void Interface::welcomeUser(){
     cout << "Welcome User!\n";
 }
 
-void UserMenu::listAllFloors(){
+void Interface::welcomeAdmin(){
+    cout << "Welcome Admin!\n";
+}
+
+void Interface::listAllFloors(){
     cout << "All floors listed: \n";
 }
 
-void UserMenu::showInfoAboutAccount(){
+void Interface::showInfoAboutAccount(){
     cout << "Info about account: \n";
 }
 
-bool UserMenu::isUserChoiceValidNumber(int a){
-
-    if(a < 3 && a > -1){
-        return true;
+bool Interface::isUserChoiceValidNumber(int a){
+    if (isAdminLoggedIn){
+            if(a < 4 && a > -1){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     else {
-        return false;
+        if(a < 3 && a > -1){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 
-void UserMenu::displayEnteringOptions(){
+void Interface::displayEnteringOptions(){
     cout << "[1] User \n";
     cout << "[2] Admin \n";
     cout << "[0] Exit \n";
 }
 
-void UserMenu::displayUserOperations(){
+void Interface::displayUserOperations(){
     cout << "[1] List all available floors \n";
     cout << "[2] Show personal information \n";
     cout << "[0] Log out \n"; 
 }
 
-int UserMenu::validateUserInput(){
+int Interface::validateUserInput(){
     int b;
         while (true){
         if (!(cin >> b && (isUserChoiceValidNumber(b)))){
@@ -137,7 +149,11 @@ int UserMenu::validateUserInput(){
     }
 }
 
-void UserMenu::displayAdminOperations(){
+void Interface::displayAdminOperations(){
+    Interface::isAdminLoggedIn = true;
+
+    headline();
+    welcomeAdmin();
     cout << "[1] List all floors \n";
     cout << "[2] List all users \n";
     cout << "[3] Create a new user \n";

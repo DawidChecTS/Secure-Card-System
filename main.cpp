@@ -8,33 +8,45 @@ int main(){
     int userChoice;
     //int userLogin;
     //char userPassword;
-    UserMenu usermenu;
+    Interface interface;
 
     do {
-        usermenu.showMainMenu();
-        userChoice = usermenu.validateUserInput();
+        interface.showMainMenu();
+        userChoice = interface.validateUserInput();
 
         switch (userChoice){
             case 1 : 
-                usermenu.userLogin();   
-                usermenu.displayUserOperations();
-                userChoice = usermenu.validateUserInput();
+                interface.userLogin();   
+                interface.displayUserOperations();
+                userChoice = interface.validateUserInput();
                 if (userChoice == 1){
-                    usermenu.listAllFloors();
+                    interface.listAllFloors();
                 }
                 else if (userChoice == 2){
-                    usermenu.showInfoAboutAccount();
+                    interface.showInfoAboutAccount();
                 }
-                else { usermenu.printLogOut();
+                else { interface.printLogOut();
                     break;
                 }
                 break;
             case 2 :
-                usermenu.adminLogin();
-                usermenu.displayAdminOperations();
-                break;
+                interface.adminLogin();
+                interface.displayAdminOperations();
+                userChoice = interface.validateUserInput();
+                if (userChoice == 1){
+
+                }
+                else if (userChoice == 2){
+
+                }
+                else if (userChoice == 3){
+
+                }
+                else { interface.printLogOut();
+                    break;
+                }
             case 0 :
-                usermenu.printExit();
+                interface.printExit();
                 break;
             default:
             cout << "Invalid choice";
