@@ -8,35 +8,10 @@ void UserMenu::headline(){
 }
 
 void UserMenu::showMainMenu(){
-    int userChoice;
 
     headline();
     
     displayEnteringOptions();
-
-    // Validate user input
-    while (true){
-        if(!(cin >> userChoice && isUserChoiceValidNumber(userChoice))){
-            cout << "Invalid input!\n";
-            cin.clear(); // reset
-            cin.ignore(1000, '\n'); // remove input
-            displayEnteringOptions();
-            continue;
-        }
-
-        switch (userChoice){
-            case 1 : 
-                userLogin();   
-                break;
-            case 2 :
-                adminLogin();
-                break ;
-            case 0 :
-                printExit();
-                return;
-        }
-
-    }   
 }
 
 void UserMenu::userLogin(){
@@ -56,7 +31,6 @@ void UserMenu::userLogin(){
         cin.ignore(1000, '\n');
         continue;
     }
-    userOperations();
 }
 
 void UserMenu::userOperations(){
@@ -74,22 +48,26 @@ void UserMenu::userOperations(){
             cin.ignore(1000, '\n');
             displayUserOperations();
             continue;
-        }
-    
-        switch (userChoice){
-            case 1 : 
-                listAllFloors();   
-                return;
-            case 2 :
-                showInfoAboutAccount();
-                return ;
-            case 0 :
-                printExit();
-                return;
-        }
+        }  
     }
 }
-    
+
+void UserMenu::adminOperations(){
+    int userChoice;
+    headline();
+    welcomeUser();
+
+    while (true){
+        if (!(cin >> userChoice && (isUserChoiceValidNumber(userChoice)))){
+            cout << "Invalid Input! \n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            displayUserOperations();
+            continue;
+        } 
+
+    }
+}
 
 void UserMenu::adminLogin(){
     int id;
@@ -106,6 +84,10 @@ void UserMenu::adminLogin(){
 
 void UserMenu::printExit() {
     cout << "You choose to Exit the Secure Card System!\n";
+}
+
+void UserMenu::printLogOut() {
+    cout << "You are logging out.";
 }
 
 void UserMenu::welcomeUser(){
@@ -140,4 +122,24 @@ void UserMenu::displayUserOperations(){
     cout << "[1] List all available floors \n";
     cout << "[2] Show personal information \n";
     cout << "[0] Log out \n"; 
+}
+
+int UserMenu::validateUserInput(){
+    int b;
+        while (true){
+        if (!(cin >> b && (isUserChoiceValidNumber(b)))){
+            cout << "Invalid Input! \n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            continue;
+        }
+        return b;
+    }
+}
+
+void UserMenu::displayAdminOperations(){
+    cout << "[1] List all floors \n";
+    cout << "[2] List all users \n";
+    cout << "[3] Create a new user \n";
+    cout << "[0] Log out \n";
 }
