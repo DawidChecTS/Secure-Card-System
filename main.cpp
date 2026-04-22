@@ -6,35 +6,35 @@ using namespace std;
 int main(){
 
     int userChoice;
-    //int userLogin;
-    //char userPassword;
-    Interface interface;
+    MainInterface maininterface;
+    UserInterface userinterface;
+    AdminInterface admininterface;
 
     do {
-        interface.showMainMenu();
-        userChoice = interface.validateUserInput();
+        maininterface.showMainMenu();
+        userChoice = maininterface.validateUserInput();
 
         switch (userChoice){
             case 1 : 
-                interface.userLogin();   
-                interface.displayUserOperations();
-                userChoice = interface.validateUserInput();
+                userinterface.userLogin();   
+                userinterface.displayUserOperations();
+                userChoice = maininterface.validateUserInput();
                 if (userChoice == 1){
-                    interface.listAllFloors();
+                    userinterface.listAllFloors();
                 }
                 else if (userChoice == 2){
-                    interface.showInfoAboutAccount();
+                    userinterface.showInfoAboutAccount();
                 }
-                else { interface.printLogOut();
+                else { maininterface.printLogOut();
                     break;
                 }
                 break;
             case 2 :
-                interface.adminLogin();
-                interface.displayAdminOperations();
-                userChoice = interface.validateUserInput();
+                admininterface.adminLogin();
+                admininterface.displayAdminOperations();
+                userChoice = maininterface.validateUserInput();
                 if (userChoice == 1){
-
+                    admininterface.chooseFloor();
                 }
                 else if (userChoice == 2){
 
@@ -42,11 +42,11 @@ int main(){
                 else if (userChoice == 3){
 
                 }
-                else { interface.printLogOut();
+                else { maininterface.printLogOut();
                     break;
                 }
             case 0 :
-                interface.printExit();
+                maininterface.printExit();
                 break;
             default:
             cout << "Invalid choice";

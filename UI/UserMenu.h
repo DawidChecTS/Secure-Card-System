@@ -1,26 +1,41 @@
 #ifndef USERMENU_H
 #define USERMENU_H
 
-class Interface {
-public :
-    void adminLogin();
-    void adminOperations();
-    void displayAdminOperations();
-    void showMainMenu();
-    void headline();
-    void userLogin();
-    void userOperations();
-    void printExit();
-    void printLogOut();
-    void welcomeUser();
-    void welcomeAdmin();
-    void listAllFloors();
-    void showInfoAboutAccount();
-    bool isUserChoiceValidNumber(int a);
-    void displayEnteringOptions();
-    void displayUserOperations();
-    int validateUserInput();
-    bool isAdminLoggedIn = false;
+class MainInterface {
+    public :
+
+        void showMainMenu();
+        void headline();
+        void printExit();
+        void printLogOut();
+        bool isUserChoiceValidNumber(int a);
+        void displayEnteringOptions();
+        int validateUserInput();
+        void welcomeUser();
+        
+
+};
+
+class AdminInterface{
+    public :
+        bool isAdminLoggedIn = false;
+        void adminLogin();
+        void adminOperations();
+        void displayAdminOperations();
+        void welcomeAdmin();
+        void chooseFloor();
+        void chooseUser();
+        void listAllFloorsView();
+        
+};
+
+class UserInterface{
+    public :
+        void userLogin();
+        void userOperations();
+        void displayUserOperations();
+        void showInfoAboutAccount();
+        void listAllFloors();
 };
 
 
