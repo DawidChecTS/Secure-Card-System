@@ -1,5 +1,7 @@
 #include <iostream>
-#include "UserMenu.h"
+#include "UserInterface.h"
+#include "AdminInterface.h"
+#include "MainInterface.h"
 
 using namespace std;
 
