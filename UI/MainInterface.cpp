@@ -35,7 +35,7 @@ bool MainInterface::isUserChoiceValidNumber(int a){
         }
     }
     else {
-        if(a < 4 && a > 0){
+        if(a < 4 && a > -1){
             return true;
         }
         else {

@@ -31,7 +31,7 @@ void AdminInterface::adminLogin(){
     cout << "* Admin login *\n";
     cout << "Enter employee id: ";
     cin >> id;
-    cout << "Enter password: \n";
+    cout << "Enter password: ";
     cin >> password;
 }
 
@@ -69,5 +69,5 @@ void AdminInterface::chooseUser(){
 
     mainterface.headline();
     cout << "* User login *\n";
-    cout << "Choose user: \n";
+    cout << "Choose user: ";
 }

@@ -1,5 +1,5 @@
 PROG = main.exe 							# Target file for exe
-SRC = main.cpp UI/UserMenu.cpp        # Source code files
+SRC = main.cpp UI/UserInterface.cpp UI/AdminInterface.cpp UI/MainInterface.cpp        # Source code files
 CFLAGS = -g -std=c++17 -Wall -Werror		# Compile flags
 LIBS = 										# Libraries
 CC=g++										# Compiler 

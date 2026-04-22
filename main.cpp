@@ -27,26 +27,28 @@ int main(){
                 else if (userChoice == 2){
                     userinterface.showInfoAboutAccount();
                 }
-                else { maininterface.printLogOut();
-                    break;
+                else { 
+                    maininterface.printLogOut();
                 }
+                break;
             case 2 :
                 admininterface.adminLogin();
                 admininterface.displayAdminOperations();
                 userChoice = maininterface.validateUserInput();
                 if (userChoice == 1){
                     admininterface.chooseFloor();
-                }
-                else if (userChoice == 2){
-
-                }
-                else if (userChoice == 3){
-
-                }
-                else { maininterface.printLogOut();
                     break;
                 }
-            case 3 :
+                else if (userChoice == 2){
+                    cout << "Not implemented yet! \n";
+                }
+                else if (userChoice == 3){
+                    cout << "Not implemented yet! \n";
+                }
+                else { maininterface.printLogOut();
+                }
+                break;
+            case 0 :
                 maininterface.printExit();
                 break;
             default:
