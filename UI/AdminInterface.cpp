@@ -1,0 +1,73 @@
+#include <iostream>
+#include "AdminInterface.h"
+#include "MainInterface.h"
+
+using namespace std;
+
+void AdminInterface::adminOperations(){
+    int userChoice;
+    MainInterface maininterface;
+
+    maininterface.headline();
+    cout << "* Admin login *\n";
+
+    while (true){
+        if (!(cin >> userChoice && (maininterface.isUserChoiceValidNumber(userChoice)))){
+            cout << "Invalid Input! \n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            continue;
+        } 
+
+    }
+}
+
+void AdminInterface::adminLogin(){
+    int id;
+    string password;
+    MainInterface maininterface;
+
+    maininterface.headline();
+    cout << "* Admin login *\n";
+    cout << "Enter employee id: ";
+    cin >> id;
+    cout << "Enter password: \n";
+    cin >> password;
+}
+
+void AdminInterface::displayAdminOperations(){
+    AdminInterface::isAdminLoggedIn = true;
+    MainInterface maininterface;
+
+    maininterface.headline();
+    cout << "* Admin login *\n";
+    cout << "[1] List all floors \n";
+    cout << "[2] List all users \n";
+    cout << "[3] Create a new user \n";
+    cout << "[4] Log out \n";
+}
+
+void AdminInterface::chooseFloor(){
+    int floor;
+    
+        while (true){
+        cout << "* Admin login *\n";
+        cout << "Choose floor: \n";
+
+        if (cin >> floor){
+            break; // if input is valid, exit the loop
+        }
+        cout << "Invalid input! Please enter a number! \n";
+        cin.clear();
+        cin.ignore(1000, '\n');
+        continue;
+        }
+}
+
+void AdminInterface::chooseUser(){
+    MainInterface mainterface;
+
+    mainterface.headline();
+    cout << "* User login *\n";
+    cout << "Choose user: \n";
+}
