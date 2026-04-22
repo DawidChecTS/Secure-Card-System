@@ -41,7 +41,6 @@ void UserInterface::userOperations(){
     MainInterface maininterface;
 
     maininterface.headline();
-    maininterface.welcomeUser();
     displayUserOperations();
 
     while (true){
@@ -60,7 +59,7 @@ void AdminInterface::adminOperations(){
     MainInterface maininterface;
 
     maininterface.headline();
-    maininterface.welcomeUser();
+    cout << "* Admin login *\n";
 
     while (true){
         if (!(cin >> userChoice && (maininterface.isUserChoiceValidNumber(userChoice)))){
@@ -91,22 +90,16 @@ void MainInterface::printExit() {
 }
 
 void MainInterface::printLogOut() {
-    cout << "You are logging out.";
-}
-
-void MainInterface::welcomeUser(){
-    cout << "Welcome User!\n";
-}
-
-void AdminInterface::welcomeAdmin(){
-    cout << "Welcome Admin!\n";
+    cout << "You are logging out. \n";
 }
 
 void UserInterface::listAllFloors(){
+    cout << "* User login *\n";
     cout << "All floors listed: \n";
 }
 
 void UserInterface::showInfoAboutAccount(){
+    cout << "* User login *\n";
     cout << "Info about account: \n";
 }
 
@@ -114,7 +107,7 @@ bool MainInterface::isUserChoiceValidNumber(int a){
     AdminInterface admininterface;
 
     if (admininterface.isAdminLoggedIn){
-            if(a < 4 && a > -1){
+            if(a < 5 && a > 0){
             return true;
         }
         else {
@@ -122,7 +115,7 @@ bool MainInterface::isUserChoiceValidNumber(int a){
         }
     }
     else {
-        if(a < 3 && a > -1){
+        if(a < 4 && a > 0){
             return true;
         }
         else {
@@ -141,9 +134,10 @@ void UserInterface::displayUserOperations(){
 
     MainInterface maininterface;
     maininterface.headline();
+    cout << "* User login *\n";
     cout << "[1] List all available floors \n";
     cout << "[2] Show personal information \n";
-    cout << "[0] Log out \n"; 
+    cout << "[3] Log out \n"; 
 }
 
 int MainInterface::validateUserInput(){
@@ -164,17 +158,18 @@ void AdminInterface::displayAdminOperations(){
     MainInterface maininterface;
 
     maininterface.headline();
-    welcomeAdmin();
+    cout << "* Admin login *\n";
     cout << "[1] List all floors \n";
     cout << "[2] List all users \n";
     cout << "[3] Create a new user \n";
-    cout << "[0] Log out \n";
+    cout << "[4] Log out \n";
 }
 
 void AdminInterface::chooseFloor(){
     int floor;
     
         while (true){
+        cout << "* Admin login *\n";
         cout << "Choose floor: \n";
 
         if (cin >> floor){
@@ -188,6 +183,10 @@ void AdminInterface::chooseFloor(){
 }
 
 void AdminInterface::chooseUser(){
+    MainInterface mainterface;
+
+    mainterface.headline();
+    cout << "* User login *\n";
     cout << "Choose user: \n";
 }
 

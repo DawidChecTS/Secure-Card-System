@@ -28,7 +28,6 @@ int main(){
                 else { maininterface.printLogOut();
                     break;
                 }
-                break;
             case 2 :
                 admininterface.adminLogin();
                 admininterface.displayAdminOperations();
@@ -45,7 +44,7 @@ int main(){
                 else { maininterface.printLogOut();
                     break;
                 }
-            case 0 :
+            case 3 :
                 maininterface.printExit();
                 break;
             default:

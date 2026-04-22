@@ -11,7 +11,6 @@ class MainInterface {
         bool isUserChoiceValidNumber(int a);
         void displayEnteringOptions();
         int validateUserInput();
-        void welcomeUser();
         
 
 };
@@ -22,7 +21,6 @@ class AdminInterface{
         void adminLogin();
         void adminOperations();
         void displayAdminOperations();
-        void welcomeAdmin();
         void chooseFloor();
         void chooseUser();
         void listAllFloorsView();
