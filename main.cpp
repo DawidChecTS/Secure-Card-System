@@ -21,7 +21,10 @@ int main(){
                 userinterface.userLogin();   
                 userinterface.displayUserOperations();
                 userChoice = maininterface.validateUserInput();
-                if (userChoice == 1){
+                if (userChoice == 0){
+                    cout << "Cannot exit while logged in. Please choose a valid operation.\n";
+                }
+                else if (userChoice == 1){
                     userinterface.listAllFloors();
                 }
                 else if (userChoice == 2){
@@ -35,17 +38,23 @@ int main(){
                 admininterface.adminLogin();
                 admininterface.displayAdminOperations();
                 userChoice = maininterface.validateUserInput();
-                if (userChoice == 1){
+                if (userChoice == 0){
+                    cout << "Cannot exit while logged in. Please choose a valid operation.\n";
+                }
+                else if (userChoice == 1){
                     admininterface.chooseFloor();
-                    break;
                 }
                 else if (userChoice == 2){
-                    cout << "Not implemented yet! \n";
+                    admininterface.listAllUsersView();
                 }
                 else if (userChoice == 3){
-                    cout << "Not implemented yet! \n";
+                    admininterface.createNewUser();
                 }
-                else { maininterface.printLogOut();
+                else if (userChoice == 4){ 
+                    maininterface.printLogOut();
+                }
+                else {
+                    cout << "Invalid choice\n";
                 }
                 break;
             case 0 :

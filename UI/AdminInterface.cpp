@@ -18,7 +18,6 @@ void AdminInterface::adminOperations(){
             cin.ignore(1000, '\n');
             continue;
         } 
-
     }
 }
 
@@ -36,7 +35,6 @@ void AdminInterface::adminLogin(){
 }
 
 void AdminInterface::displayAdminOperations(){
-    AdminInterface::isAdminLoggedIn = true;
     MainInterface maininterface;
 
     maininterface.headline();
@@ -70,4 +68,14 @@ void AdminInterface::chooseUser(){
     mainterface.headline();
     cout << "* User login *\n";
     cout << "Choose user: ";
+}
+
+void AdminInterface::listAllUsersView(){
+    cout << "* Admin login *\n";
+    cout << "All users listed: \n";
+}
+
+void AdminInterface::createNewUser(){
+    cout << "* Admin login *\n";
+    cout << "Creating new user: \n";
 }

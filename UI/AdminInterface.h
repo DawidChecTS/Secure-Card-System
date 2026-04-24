@@ -3,14 +3,14 @@
 
 class AdminInterface{
     public :
-        bool isAdminLoggedIn = false;
         void adminLogin();
         void adminOperations();
         void displayAdminOperations();
         void chooseFloor();
         void chooseUser();
         void listAllFloorsView();
-        
+        void listAllUsersView();
+        void createNewUser();
 };
 
 #endif

@@ -24,24 +24,7 @@ void MainInterface::printLogOut() {
 }
 
 bool MainInterface::isUserChoiceValidNumber(int a){
-    AdminInterface admininterface;
-
-    if (admininterface.isAdminLoggedIn){
-            if(a < 5 && a > 0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    else {
-        if(a < 4 && a > -1){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    return (a >= 0 && a <= 4);
 }
 
 void MainInterface::displayEnteringOptions(){
