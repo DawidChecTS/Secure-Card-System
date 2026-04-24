@@ -1,6 +1,7 @@
 #include <iostream>
 #include "AdminInterface.h"
 #include "MainInterface.h"
+#include <fstream>
 
 using namespace std;
 
@@ -75,7 +76,24 @@ void AdminInterface::listAllUsersView(){
     cout << "All users listed: \n";
 }
 
-void AdminInterface::createNewUser(){
-    cout << "* Admin login *\n";
-    cout << "Creating new user: \n";
+void AdminInterface::createNewUser() {
+    int id;
+    std::string username;
+    std::string password;
+
+    std::cout << "Enter new user id: ";
+    std::cin >> id;
+    std::cout << "Enter username: ";
+    std::cin >> username;
+    std::cout << "Enter password: ";
+    std::cin >> password;
+
+    std::ofstream file("users.csv", std::ios::app);
+    if (!file) {
+        std::cout << "Unable to open users.csv file\n";
+        return;
+    }
+
+    file << id << ',' << username << ',' << password << ",user\n";
+    std::cout << "User saved to users.csv\n";
 }
