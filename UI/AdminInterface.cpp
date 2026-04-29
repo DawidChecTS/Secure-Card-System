@@ -1,7 +1,7 @@
 #include <iostream>
 #include "AdminInterface.h"
 #include "MainInterface.h"
-#include <fstream>
+#include <fstream> // Input/Output fie stream library
 
 using namespace std;
 
@@ -57,8 +57,8 @@ void AdminInterface::chooseFloor(){
             break; // if input is valid, exit the loop
         }
         cout << "Invalid input! Please enter a number! \n";
-        cin.clear();
-        cin.ignore(1000, '\n');
+        cin.clear(); // stops accepting the new input, resets the error
+        cin.ignore(1000, '\n'); // leftover input is deleted
         continue;
         }
 }
@@ -78,22 +78,33 @@ void AdminInterface::listAllUsersView(){
 
 void AdminInterface::createNewUser() {
     int id;
-    std::string username;
-    std::string password;
+    int phoneNumber;
+    int card;
+    std::string name;
+    std::string email;
+    
 
     std::cout << "Enter new user id: ";
     std::cin >> id;
-    std::cout << "Enter username: ";
-    std::cin >> username;
-    std::cout << "Enter password: ";
-    std::cin >> password;
+    std::cout << "Enter name: ";
+    std::cin >> name;
+    std::cout << "Enter email: ";
+    std::cin >> email;
+    std::cout << "Enter users phone number: ";
+    std::cin >> phoneNumber;
+    std::cout << "Enter users card number: ";
+    std::cin >> card;
 
+    // Create an ofstream object named file
+    // Opens users.csv in append mode:
+    // If file exists keep all existin content, new data is added at the end
+    // If the file doesn't exists, creates a new file
     std::ofstream file("users.csv", std::ios::app);
     if (!file) {
         std::cout << "Unable to open users.csv file\n";
         return;
     }
 
-    file << id << ',' << username << ',' << password << ",user\n";
+    file << id << ',' << name << ',' << email << ',' << phoneNumber << ','<< card << ",user\n";
     std::cout << "User saved to users.csv\n";
 }

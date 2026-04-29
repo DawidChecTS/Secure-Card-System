@@ -19,8 +19,8 @@ void UserInterface::userLogin(){
             break; // if input is valid, exit the loop
         }
         cout << "Invalid input! Please enter a number! \n";
-        cin.clear();
-        cin.ignore(1000, '\n');
+        cin.clear(); // stops accepting the new input, resets the error
+        cin.ignore(1000, '\n'); // leftover input is deleted
         continue;
     }
 }
