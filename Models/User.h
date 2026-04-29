@@ -2,7 +2,7 @@
 #define USER_H
 #include <string>
 
-class User{
+struct User{
     int id;
     std::string name;
     std::string email;

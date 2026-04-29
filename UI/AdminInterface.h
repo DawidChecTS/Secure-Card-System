@@ -10,7 +10,6 @@ class AdminInterface{
         void chooseUser();
         void listAllFloorsView();
         void listAllUsersView();
-        void createNewUser();
 };
 
 #endif

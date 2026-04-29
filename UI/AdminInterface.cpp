@@ -75,36 +75,3 @@ void AdminInterface::listAllUsersView(){
     cout << "* Admin login *\n";
     cout << "All users listed: \n";
 }
-
-void AdminInterface::createNewUser() {
-    int id;
-    int phoneNumber;
-    int card;
-    std::string name;
-    std::string email;
-    
-
-    std::cout << "Enter new user id: ";
-    std::cin >> id;
-    std::cout << "Enter name: ";
-    std::cin >> name;
-    std::cout << "Enter email: ";
-    std::cin >> email;
-    std::cout << "Enter users phone number: ";
-    std::cin >> phoneNumber;
-    std::cout << "Enter users card number: ";
-    std::cin >> card;
-
-    // Create an ofstream object named file
-    // Opens users.csv in append mode:
-    // If file exists keep all existin content, new data is added at the end
-    // If the file doesn't exists, creates a new file
-    std::ofstream file("users.csv", std::ios::app);
-    if (!file) {
-        std::cout << "Unable to open users.csv file\n";
-        return;
-    }
-
-    file << id << ',' << name << ',' << email << ',' << phoneNumber << ','<< card << ",user\n";
-    std::cout << "User saved to users.csv\n";
-}
