@@ -1,7 +1,7 @@
 #include "UI/UserInterface.h"
 #include "UI/AdminInterface.h"
 #include "UI/MainInterface.h"
-#include "Services/UserService.h"
+#include "Services/UserServices.h"
 #include <iostream>
 
 using namespace std;
@@ -49,7 +49,7 @@ int main(){
                     admininterface.listAllUsersView();
                 }
                 else if (userChoice == 3){
-                    continue;
+                    admininterface.createNewUser();
                 }
                 else if (userChoice == 4){ 
                     maininterface.printLogOut();

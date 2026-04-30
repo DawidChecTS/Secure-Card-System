@@ -1,5 +1,5 @@
-#ifndef USER_SERVICES
-#define USER_SERVICES
+#ifndef USER_SERVICE
+#define USER_SERVICE
 #include "../Models/User.h"
 
 #include <vector>

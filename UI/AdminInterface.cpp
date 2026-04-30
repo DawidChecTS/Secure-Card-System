@@ -1,6 +1,7 @@
 #include <iostream>
 #include "AdminInterface.h"
 #include "MainInterface.h"
+#include "../Services/UserServices.h"
 #include <fstream> // Input/Output fie stream library
 
 using namespace std;
@@ -72,6 +73,35 @@ void AdminInterface::chooseUser(){
 }
 
 void AdminInterface::listAllUsersView(){
+    UserService userservice;
+    std::vector<User> users = userservice.getAllUsers();
+
     cout << "* Admin login *\n";
-    cout << "All users listed: \n";
+    for (User user : users) {
+    std::cout << "ID: "    << user.id    << "\n";
+    std::cout << "Name: "  << user.name  << "\n";
+    std::cout << "Email: " << user.email << "\n";
+    std::cout << "Phone: " << user.phonenumber << "\n";
+    std::cout << "Card: "  << user.card  << "\n";
+    std::cout << "----------------------\n";
+    }
+}
+
+void AdminInterface::createNewUser() {
+    User user;
+    user.role = "user"; // always "user" when admin creates one
+
+    std::cout << "Enter id: ";
+    std::cin >> user.id;
+    std::cout << "Enter name: ";
+    std::cin >> user.name;
+    std::cout << "Enter email: ";
+    std::cin >> user.email;
+    std::cout << "Enter phone: ";
+    std::cin >> user.phonenumber;
+    std::cout << "Enter card number: ";
+    std::cin >> user.card;
+
+    UserService userService;
+    userService.saveUser(user); // hands off to service
 }

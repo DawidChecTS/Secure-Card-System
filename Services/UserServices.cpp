@@ -1,7 +1,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "UserService.h"
+#include "UserServices.h"
 
 
 // Read all users from users.csv and returns them as a list
@@ -11,24 +11,24 @@ std::ifstream file("users.csv");
 
     if (!file) {
         std::cout << "Unable to open users.csv file\n";
-        return;
+        return users;
     }
 
-std::string line;
+    std::string line;
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         User user;
         std::string id;
 
         std::getline(ss, id, ',');
-        user.id = std::stoi(id);
+        user.id = std::stoi(id); // string to integer
         std::getline(ss, user.name, ',');
         std::getline(ss, user.email, ',');
         std::getline(ss, user.phonenumber, ',');
         std::getline(ss, user.card, ',');
         std::getline(ss, user.role, ',');
 
-        users.push_back(user); // adds user to the list
+        users.push_back(user); // adds user to the buttom of list
     }
 
     file.close();
