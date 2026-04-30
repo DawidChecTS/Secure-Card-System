@@ -41,7 +41,8 @@ int main(){
                 }
                 break;
             case 2 :
-                admininterface.adminLogin();
+                if (!admininterface.adminLogin()); // if login fail, return to main menu
+                else
                 
                 while(true){
                     admininterface.displayAdminOperations();

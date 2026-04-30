@@ -3,7 +3,7 @@
 
 class AdminInterface{
     public :
-        void adminLogin();
+        bool adminLogin();
         void adminOperations();
         void displayAdminOperations();
         void chooseFloor();

@@ -24,7 +24,7 @@ void AdminInterface::adminOperations(){
     }
 }
 
-void AdminInterface::adminLogin(){
+bool AdminInterface::adminLogin(){
     int id;
     string password;
     MainInterface maininterface;
@@ -41,9 +41,10 @@ void AdminInterface::adminLogin(){
 
     if(admin.name.empty()){
         cout << "Login failed! Invalid id or password.\n";
-        return;
+        return false;
     } else {
         cout << "Welcome, " << admin.name << ".\n";
+        return true;
     }
 }
 
