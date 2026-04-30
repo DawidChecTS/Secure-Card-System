@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iostream>
 #include "UserServices.h"
+#include <vector>
 
 
 // Read all users from users.csv and returns them as a list
@@ -53,4 +54,18 @@ void UserService::saveUser(User user) {
 
     std::cout << "User saved successfully!\n";
     file.close();
+}
+
+User UserService::findUser(std::string input) {
+    std::vector<User> users = getAllUsers(); // get all users from CSV file
+
+    for (User user : users) {
+        // check if input matches id or name
+        if (user.name == input || std::to_string(user.id) == input) {
+            return user; // return user if found
+        }
+    }
+
+    // if no user found, return an empty user
+    return User{};
 }

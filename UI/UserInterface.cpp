@@ -1,27 +1,28 @@
 #include <iostream>
 #include "UserInterface.h"
 #include "MainInterface.h"
+#include <string>
+#include "../Services/UserServices.h"
 
 using namespace std;
 
 void UserInterface::userLogin(){
-    int id;
-    MainInterface maininteface;
+    string input;
+    MainInterface maininterface;
 
-    maininteface.headline();
-
+    maininterface.headline();
     cout << "* User login *\n";
+    cout << "Enter id or name: ";
+    cin >> input;
 
-    while (true){
-        cout << "Enter employee id or name: \n";
+    UserService userService;
+    User loggedInUser = userService.findUser(input);
 
-        if (cin >> id){
-            break; // if input is valid, exit the loop
-        }
-        cout << "Invalid input! Please enter a number! \n";
-        cin.clear(); // stops accepting the new input, resets the error
-        cin.ignore(1000, '\n'); // leftover input is deleted
-        continue;
+    if (loggedInUser.name.empty()) {
+        // empty name means no user is found
+        cout << "User not found!\n";
+    } else {
+        cout << "Welcome, " << loggedInUser.name << "!\n";
     }
 }
 
