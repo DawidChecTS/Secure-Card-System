@@ -2,6 +2,7 @@
 #include "AdminInterface.h"
 #include "MainInterface.h"
 #include "../Services/UserServices.h"
+#include "../Services/AdminServices.h"
 #include <fstream> // Input/Output fie stream library
 
 using namespace std;
@@ -34,6 +35,16 @@ void AdminInterface::adminLogin(){
     cin >> id;
     cout << "Enter password: ";
     cin >> password;
+
+    AdminServices adminservices;
+    Admin admin = adminservices.findAdmin(id, password);
+
+    if(admin.name.empty()){
+        cout << "Login failed! Invalid id or password.\n";
+        return;
+    } else {
+        cout << "Welcome, " << admin.name << ".\n";
+    }
 }
 
 void AdminInterface::displayAdminOperations(){
