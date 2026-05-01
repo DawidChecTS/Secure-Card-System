@@ -3,11 +3,11 @@
 
 #include <string>
 
-class Floor{
+struct Floor{
 
     int id;
     std::string name;
-
+    int clearanceLevel;
 
 };
 
