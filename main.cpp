@@ -2,6 +2,7 @@
 #include "UI/AdminInterface.h"
 #include "UI/MainInterface.h"
 #include "Services/UserServices.h"
+#include "Services/UserServices.h"
 #include <iostream>
 
 using namespace std;
@@ -18,28 +19,35 @@ int main(){
         userChoice = maininterface.validateUserInput();
 
         switch (userChoice){
-            case 1 : 
-                userinterface.userLogin();   
-                
-                while(true){
-                    userinterface.displayUserOperations();
-                    userChoice = maininterface.validateUserInput();
+            // putting {} to create a new scope for variables declared inside case 1
+            case 1:{
+                User loggedInUser = userinterface.userLogin();
 
-                    if (userChoice == 1){
-                        userinterface.listAllFloors();
-                    }
-                    else if (userChoice == 2){
-                        userinterface.showInfoAboutAccount();
-                    }
-                    else if (userChoice == 3){
-                        maininterface.printLogOut();
-                        break; // exit to main menu
-                    }
-                    else  {
-                        cout << "Invalid choice\n";
-                    }
+                // if login failed, go back to main menu
+                if (loggedInUser.name.empty()) {
+                    break;
                 }
-                break;
+
+            while(true) {
+                userinterface.displayUserOperations();
+                userChoice = maininterface.validateUserInput();
+
+                if (userChoice == 1) {
+                    userinterface.listAllFloors();
+                }
+                else if (userChoice == 2) {
+                    userinterface.showInfoAboutAccount(loggedInUser);
+                }
+                else if (userChoice == 3) {
+                    maininterface.printLogOut();
+                    break;
+                }
+                else {
+                    cout << "Invalid choice\n";
+                }
+            }
+            break;
+            }   
             case 2 :
                 if (!admininterface.adminLogin()); // if login fail, return to main menu
                 else

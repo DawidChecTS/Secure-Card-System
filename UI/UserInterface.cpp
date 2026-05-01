@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void UserInterface::userLogin(){
+User UserInterface::userLogin(){
     string input;
     MainInterface maininterface;
 
@@ -21,8 +21,10 @@ void UserInterface::userLogin(){
     if (loggedInUser.name.empty()) {
         // empty name means no user is found
         cout << "User not found!\n";
+        return User{}; // return an empty user to indicate failure
     } else {
         cout << "Welcome, " << loggedInUser.name << "!\n";
+        return loggedInUser; // return the logged-in user
     }
 }
 
@@ -50,9 +52,15 @@ void UserInterface::listAllFloors(){
     cout << "All floors listed: \n";
 }
 
-void UserInterface::showInfoAboutAccount(){
-    cout << "* User login *\n";
+void UserInterface::showInfoAboutAccount(User user){
+    MainInterface maininterface;
+    maininterface.headline();
+    cout << "* User login *\n"; 
     cout << "Info about account: \n";
+    cout << "Name: " << user.name << "\n";
+    cout << "Email: " << user.email << "\n";
+    cout << "Phone number: " << user.phonenumber << "\n";
+    cout << "Card: " << user.card << "\n";
 }
 
 void UserInterface::displayUserOperations(){
