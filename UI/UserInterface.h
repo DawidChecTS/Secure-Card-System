@@ -8,7 +8,7 @@ class UserInterface{
         void userOperations();
         void displayUserOperations();
         void showInfoAboutAccount(User user);
-        void listAllFloors();
+        void listAllFloors(User user);
 };
 
 #endif

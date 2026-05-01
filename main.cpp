@@ -33,7 +33,7 @@ int main(){
                 userChoice = maininterface.validateUserInput();
 
                 if (userChoice == 1) {
-                    userinterface.listAllFloors();
+                    userinterface.listAllFloors(loggedInUser);
                 }
                 else if (userChoice == 2) {
                     userinterface.showInfoAboutAccount(loggedInUser);

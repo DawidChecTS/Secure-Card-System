@@ -48,14 +48,14 @@ void UserInterface::userOperations(){
     }
 }
 
-void UserInterface::listAllFloors(){
+void UserInterface::listAllFloors(User user){
     FloorServices floorService;
     vector<Floor> floors = floorService.getAllFloors();
 
     MainInterface maininterface;
     maininterface.headline();
     cout << '\n';
-    cout << "List with the all floors: \n";
+    cout << "All floors: \n";
 
     for (Floor floor : floors){
         cout << "ID: " << floor.id << '\n';
@@ -63,6 +63,24 @@ void UserInterface::listAllFloors(){
         cout << "Clearance level: " << floor.clearanceLevel << "\n\n";
         cout << "-------------------------\n";
     }
+
+    cout << "Choose floor id to access: ";
+    int floorChoice;
+    cin >> floorChoice;
+
+    // find the chosen floor
+    for (Floor floor : floors) {
+        if (floor.id == floorChoice) {
+            // check clearance
+            if (user.clearanceLevel >= floor.clearanceLevel) {
+                cout << "ACCESS GRANTED to " << floor.name << "!\n";
+            } else {
+                cout << "ACCESS DENIED! Your clearance level is too low.\n";
+            }
+            return;
+        }
+    }
+    cout << "Floor not found!\n";
 }
 
 void UserInterface::showInfoAboutAccount(User user){

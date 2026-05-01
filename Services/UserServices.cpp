@@ -17,20 +17,23 @@ std::ifstream file("users.csv");
 
     std::string line;
     while (std::getline(file, line)) {
-        std::stringstream ss(line);
-        User user;
-        std::string id;
+    std::stringstream ss(line);
+    User user;
+    std::string id;
+    std::string clearanceLevel;
 
-        std::getline(ss, id, ',');
-        user.id = std::stoi(id); // string to integer
-        std::getline(ss, user.name, ',');
-        std::getline(ss, user.email, ',');
-        std::getline(ss, user.phonenumber, ',');
-        std::getline(ss, user.card, ',');
-        std::getline(ss, user.role, ',');
+    std::getline(ss, id, ',');
+    user.id = std::stoi(id);
+    std::getline(ss, user.name, ',');
+    std::getline(ss, user.email, ',');
+    std::getline(ss, user.phonenumber, ',');
+    std::getline(ss, user.card, ',');
+    std::getline(ss, clearanceLevel, ',');
+    user.clearanceLevel = std::stoi(clearanceLevel);
+    std::getline(ss, user.role, ',');
 
-        users.push_back(user); // adds user to the buttom of list
-    }
+    users.push_back(user);
+}
 
     file.close();
     return users; // returns the full list
