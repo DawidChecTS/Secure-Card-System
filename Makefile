@@ -1,5 +1,5 @@
 PROG = main.exe 							# Target file for exe
-SRC = main.cpp UI/UserInterface.cpp UI/AdminInterface.cpp UI/MainInterface.cpp Services/UserServices.cpp Services/AdminServices.cpp Services/FloorServices.cpp # Source code files
+SRC = main.cpp UI/UserInterface.cpp UI/AdminInterface.cpp UI/MainInterface.cpp Services/UserServices.cpp Services/AdminServices.cpp Services/FloorServices.cpp Services/LogServices.cpp # Source code files
 CFLAGS = -g -std=c++17 -Wall -Werror		# Compile flags
 LIBS = 										# Libraries
 CC=g++										# Compiler 

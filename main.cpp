@@ -14,6 +14,8 @@ int main(){
     UserInterface userinterface;
     AdminInterface admininterface;
 
+    LogServices logServices; // one instance of LogServices to be used across the whole program, so that logs are stored in memory and not lost when exiting user or admin interface
+
     do {
         maininterface.showMainMenu();
         userChoice = maininterface.validateUserInput();
@@ -33,7 +35,7 @@ int main(){
                 userChoice = maininterface.validateUserInput();
 
                 if (userChoice == 1) {
-                    userinterface.listAllFloors(loggedInUser);
+                    userinterface.listAllFloors(loggedInUser, logServices);
                 }
                 else if (userChoice == 2) {
                     userinterface.showInfoAboutAccount(loggedInUser);

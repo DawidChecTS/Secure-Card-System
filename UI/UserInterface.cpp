@@ -48,7 +48,7 @@ void UserInterface::userOperations(){
     }
 }
 
-void UserInterface::listAllFloors(User user){
+void UserInterface::listAllFloors(User user, LogServices& logServices){
     FloorServices floorService;
     vector<Floor> floors = floorService.getAllFloors();
 
