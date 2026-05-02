@@ -13,7 +13,7 @@ void AdminInterface::adminOperations(){
     MainInterface maininterface;
 
     maininterface.headline();
-    cout << "* Admin login *\n";
+    cout << '\n';
 
     while (true){
         if (!(cin >> userChoice && (maininterface.isUserChoiceValidNumber(userChoice)))){
@@ -53,7 +53,7 @@ void AdminInterface::displayAdminOperations(){
     MainInterface maininterface;
 
     maininterface.headline();
-    cout << "* Admin login *\n";
+    cout << '\n';
     cout << "[1] List all floors \n";
     cout << "[2] List all users \n";
     cout << "[3] Create a new user \n";
@@ -65,7 +65,7 @@ void AdminInterface::chooseFloor(LogServices& logServices){
     std::vector<Floor> floors = floorService.getAllFloors();
 
     // show all floors
-    cout << "* Admin *\n";
+    cout << '\n';
     cout << "All floors:\n\n";
     for (Floor floor : floors) {
         cout << "ID: " << floor.id << "\n";
@@ -122,7 +122,7 @@ void AdminInterface::listAllUsersView(){
     UserService userservice;
     std::vector<User> users = userservice.getAllUsers();
 
-    cout << "* Admin login *\n";
+    cout << '\n';
     for (User user : users) {
     std::cout << "ID: " << user.id << "\n";
     std::cout << "Name: " << user.name << "\n";

@@ -22,3 +22,30 @@ bool ValidationServices::isValidPassword(std::string password){
 
     return hasUpper && hasLower && hasNumber && hasSpecial;
 }
+
+bool ValidationServices::isValidEmail(std::string email) {
+    // find @ symbol
+    int atPos = -1;
+    for (int i = 0; i < email.length(); i++) {
+        if (email[i] == '@') {
+            atPos = i;
+            break;
+        }
+    }
+    // no @ found or @ is at start
+    if (atPos <= 0) return false;
+
+    // find dot after @
+    int dotPos = -1;
+    for (int i = atPos; i < email.length(); i++) {
+        if (email[i] == '.') {
+            dotPos = i;
+            break;
+        }
+    }
+    // if no dot found, dot is right after @ or dot is at the end
+    if (dotPos == -1 || dotPos == atPos + 1) return false;
+    if (dotPos == email.length() - 1) return false;
+
+    return true;
+}

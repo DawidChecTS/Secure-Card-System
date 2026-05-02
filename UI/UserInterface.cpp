@@ -68,7 +68,6 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
     int floorChoice;
     cin >> floorChoice;
 
-    // find the chosen floor
     for (Floor floor : floors) {
         if (floor.id == floorChoice) {
             // check clearance
@@ -100,7 +99,7 @@ void UserInterface::displayUserOperations(){
 
     MainInterface maininterface;
     maininterface.headline();
-    cout << "* User login *\n";
+    cout << "\n";
     cout << "[1] List all available floors \n";
     cout << "[2] Show personal information \n";
     cout << "[3] Log out \n"; 
