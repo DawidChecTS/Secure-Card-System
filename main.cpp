@@ -59,7 +59,7 @@ int main(){
                     userChoice = maininterface.validateUserInput();
 
                     if (userChoice == 1){
-                        admininterface.chooseFloor();
+                        admininterface.chooseFloor(logServices);
                     }
                     else if (userChoice == 2){
                         admininterface.listAllUsersView();
