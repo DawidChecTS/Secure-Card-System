@@ -23,29 +23,57 @@ bool ValidationServices::isValidPassword(std::string password){
     return hasUpper && hasLower && hasNumber && hasSpecial;
 }
 
+// size_t is an unsigned integer type that can represent the size of any object in bytes. 
+
 bool ValidationServices::isValidEmail(std::string email) {
     // find @ symbol
-    int atPos = -1;
-    for (int i = 0; i < email.length(); i++) {
+    size_t atPos = -1;
+    for (size_t i = 0; i < email.length(); i++) {
         if (email[i] == '@') {
             atPos = i;
             break;
         }
     }
     // no @ found or @ is at start
-    if (atPos <= 0) return false;
+    if (atPos == std::string::npos || atPos == 0) return false; 
 
     // find dot after @
-    int dotPos = -1;
-    for (int i = atPos; i < email.length(); i++) {
+    size_t dotPos = -1;
+    for (size_t i = atPos; i < email.length(); i++) {
         if (email[i] == '.') {
             dotPos = i;
             break;
         }
     }
     // if no dot found, dot is right after @ or dot is at the end
-    if (dotPos == -1 || dotPos == atPos + 1) return false;
+    if (dotPos == std::string::npos || dotPos == atPos + 1) return false;
     if (dotPos == email.length() - 1) return false;
 
     return true;
+}
+
+bool ValidationServices::isValidPhoneNumber(std::string phone) {
+    // must be 07XXXXXXXX (10 digits) or +467XXXXXXXX (12 chars)
+    if (phone.length() == 10) {
+        // start with 07
+        if (phone[0] == '0' && phone[1] == '7') {
+            for (size_t i = 2; i < phone.length(); i++) {
+                if (!isdigit(phone[i])) return false;
+            }
+            return true;
+        }
+    }
+
+    if (phone.length() == 12) {
+        // start with +467
+        if (phone[0] == '+' && phone[1] == '4' && 
+            phone[2] == '6' && phone[3] == '7') {
+            for (size_t i = 4; i < phone.length(); i++) {
+                if (!isdigit(phone[i])) return false;
+            }
+            return true;
+        }
+    }
+
+    return false;
 }

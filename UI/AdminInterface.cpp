@@ -4,7 +4,8 @@
 #include "../Services/UserServices.h"
 #include "../Services/AdminServices.h"
 #include "../Services/FloorServices.h"
-#include <fstream> // Input/Output fie stream library
+#include "../Services/ValidationServices.h"
+#include <fstream>
 
 using namespace std;
 
@@ -135,19 +136,35 @@ void AdminInterface::listAllUsersView(){
 
 void AdminInterface::createNewUser() {
     User user;
-    user.role = "user"; // always "user" when admin creates one
+    user.role = "user";
+    ValidationServices validationService;
 
     std::cout << "Enter id: ";
     std::cin >> user.id;
     std::cout << "Enter name: ";
     std::cin >> user.name;
-    std::cout << "Enter email: ";
-    std::cin >> user.email;
-    std::cout << "Enter phone: ";
-    std::cin >> user.phonenumber;
+
+    // validate email
+    while (true) {
+        std::cout << "Enter email: ";
+        std::cin >> user.email;
+        if (validationService.isValidEmail(user.email)) break;
+        std::cout << "Invalid email! Must be local@domain.tld\n";
+    }
+
+    // validate phone
+    while (true) {
+        std::cout << "Enter phone: ";
+        std::cin >> user.phonenumber;
+        if (validationService.isValidPhoneNumber(user.phonenumber)) break;
+        std::cout << "Invalid phone! Must be 07XXXXXXXX or +467XXXXXXXX\n";
+    }
+
     std::cout << "Enter card number: ";
     std::cin >> user.card;
+    std::cout << "Enter clearance level: ";
+    std::cin >> user.clearanceLevel;
 
     UserService userService;
-    userService.saveUser(user); // hands off to service
+    userService.saveUser(user);
 }
