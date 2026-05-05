@@ -139,8 +139,14 @@ void AdminInterface::createNewUser() {
     user.role = "user";
     ValidationServices validationService;
 
+    while (true) {
     std::cout << "Enter id: ";
-    std::cin >> user.id;
+    if (std::cin >> user.id && validationService.isValidId(user.id)) break;
+    std::cout << "Invalid id! Must be a positive number.\n";
+    std::cin.clear();
+    std::cin.ignore(1000, '\n');
+    }   
+    
     std::cout << "Enter name: ";
     std::cin >> user.name;
 

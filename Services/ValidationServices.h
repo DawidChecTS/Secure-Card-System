@@ -7,6 +7,8 @@ class ValidationServices{
         bool isValidPassword(std::string password);
         bool isValidEmail(std::string email);
         bool isValidPhoneNumber(std::string phoneNumber);
+
+        bool isValidId(int id);
 };
 
 

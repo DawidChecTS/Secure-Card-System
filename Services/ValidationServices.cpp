@@ -1,6 +1,11 @@
 #include <iostream>
 #include "ValidationServices.h"
 
+
+bool ValidationServices::isValidId(int id) {
+    return id > 0; // id must be a positive number
+}
+
 bool ValidationServices::isValidPassword(std::string password){
     // check if password is at least 8 characters long and contains at least one uppercase letter, one lowercase letter, and one digit
     if (password.length() < 8) {
