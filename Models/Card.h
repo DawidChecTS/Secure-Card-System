@@ -1,7 +1,7 @@
 #ifndef CARD_H
 #define CARD_H
 
-class Card{
+struct Card{
     int id;
     int clearanceLevel;
 };

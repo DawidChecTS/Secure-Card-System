@@ -29,25 +29,6 @@ User UserInterface::userLogin(){
     }
 }
 
-void UserInterface::userOperations(){
-
-    int userChoice;
-    MainInterface maininterface;
-
-    maininterface.headline();
-    displayUserOperations();
-
-    while (true){
-        if (!(cin >> userChoice && (maininterface.isUserChoiceValidNumber(userChoice)))){
-            cout << "Invalid Input! \n";
-            cin.clear();
-            cin.ignore(1000, '\n');
-            displayUserOperations();
-            continue;
-        }  
-    }
-}
-
 void UserInterface::listAllFloors(User user, LogServices& logServices){
     FloorServices floorService;
     vector<Floor> floors = floorService.getAllFloors();

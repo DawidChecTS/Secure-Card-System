@@ -9,23 +9,6 @@
 
 using namespace std;
 
-void AdminInterface::adminOperations(){
-    int userChoice;
-    MainInterface maininterface;
-
-    maininterface.headline();
-    cout << '\n';
-
-    while (true){
-        if (!(cin >> userChoice && (maininterface.isUserChoiceValidNumber(userChoice)))){
-            cout << "Invalid Input! \n";
-            cin.clear();
-            cin.ignore(1000, '\n');
-            continue;
-        } 
-    }
-}
-
 bool AdminInterface::adminLogin(){
     int id;
     string password;

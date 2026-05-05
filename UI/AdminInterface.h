@@ -7,7 +7,6 @@
 class AdminInterface{
     public :
         bool adminLogin();
-        void adminOperations();
         void displayAdminOperations();
         void chooseFloor(LogServices& logServices);
         void chooseUser();
