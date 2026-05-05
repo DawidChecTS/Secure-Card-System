@@ -147,6 +147,21 @@ void AdminInterface::createNewUser() {
     std::cin.ignore(1000, '\n');
     }   
 
+    while (true) {
+    std::cout << "Enter name: ";
+    std::cin >> user.name;
+    if (validationService.isNameValid(user.name)) break;
+    std::cout << "Invalid name! Name can not be empty! \n";
+    } 
+
+    while (true) {
+    std::cout << "Enter id: ";
+    if (std::cin >> user.id && validationService.isValidId(user.id)) break;
+    std::cout << "Invalid id! Must be a positive number.\n";
+    std::cin.clear();
+    std::cin.ignore(1000, '\n');
+    } 
+
     // validate email
     while (true) {
         std::cout << "Enter email: ";
@@ -165,6 +180,8 @@ void AdminInterface::createNewUser() {
 
     std::cout << "Enter card number: ";
     std::cin >> user.card;
+
+    user.clearanceLevel = 0; // default clearance level
 
     UserService userService;
     userService.saveUser(user);

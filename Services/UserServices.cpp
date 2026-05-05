@@ -53,6 +53,7 @@ void UserService::saveUser(User user) {
          << user.email << ','
          << user.phonenumber << ','
          << user.card << ','
+         << user.clearanceLevel << ','
          << user.role << '\n';
 
     std::cout << "User saved successfully!\n";
