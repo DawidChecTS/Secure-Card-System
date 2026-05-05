@@ -146,9 +146,6 @@ void AdminInterface::createNewUser() {
     std::cin.clear();
     std::cin.ignore(1000, '\n');
     }   
-    
-    std::cout << "Enter name: ";
-    std::cin >> user.name;
 
     // validate email
     while (true) {
@@ -168,8 +165,6 @@ void AdminInterface::createNewUser() {
 
     std::cout << "Enter card number: ";
     std::cin >> user.card;
-    std::cout << "Enter clearance level: ";
-    std::cin >> user.clearanceLevel;
 
     UserService userService;
     userService.saveUser(user);
