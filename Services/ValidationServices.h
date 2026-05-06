@@ -10,7 +10,4 @@ class ValidationServices{
         bool isValidId(int id);
         bool isNameValid(std::string name);
 };
-
-
-
 #endif

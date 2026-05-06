@@ -1,9 +1,7 @@
 #ifndef USER_SERVICE
 #define USER_SERVICE
 #include "../Models/User.h"
-
 #include <vector>
-
 
 class UserService {
 
@@ -13,7 +11,4 @@ class UserService {
         User findUser(std::string input);
         void deleteUser(int id);
 };
-
-
-
 #endif

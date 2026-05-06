@@ -1,6 +1,5 @@
 #ifndef ADMIN_H
 #define ADMIN_H
-
 #include <string>
 
 struct Admin {
@@ -10,8 +9,5 @@ struct Admin {
     std::string role;
 
 };
-
-
-
 
 #endif

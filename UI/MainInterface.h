@@ -11,8 +11,5 @@ class MainInterface {
         bool isUserChoiceValidNumber(int a);
         void displayEnteringOptions();
         int validateUserInput();
-        
-
 };
-
-#endif 
+#endif

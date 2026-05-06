@@ -3,7 +3,6 @@
 #include "../Models/LogEntry.h"
 #include <vector>
 
-
 class LogServices {
     public :
     void addLog(std::string userName, std::string floorName, bool accessGranted);
@@ -13,5 +12,4 @@ class LogServices {
     private :
     std::vector<LogEntry> logs;
 };
-
 #endif

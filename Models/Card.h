@@ -5,6 +5,4 @@ struct Card{
     int id;
     int clearanceLevel;
 };
-
-
 #endif

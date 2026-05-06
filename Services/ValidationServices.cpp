@@ -7,7 +7,7 @@ bool ValidationServices::isValidId(int id) {
 }
 
 bool ValidationServices::isNameValid(std::string name) {
-    return !name.empty(); // name must not be empty
+    return !name.empty(); // name can not be empty
 }
 
 bool ValidationServices::isValidPassword(std::string password){
@@ -26,9 +26,7 @@ bool ValidationServices::isValidPassword(std::string password){
         if (islower(c)) hasLower = true; // check for lowercase
         if (isdigit(c)) hasNumber = true; // check for number
         if (ispunct(c)) hasSpecial = true; // check for special character
-
     }
-
     return hasUpper && hasLower && hasNumber && hasSpecial;
 }
 

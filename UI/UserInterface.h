@@ -10,5 +10,4 @@ class UserInterface{
         void showInfoAboutAccount(User user);
         void listAllFloors(User user, LogServices& logServices);
 };
-
 #endif

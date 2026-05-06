@@ -134,6 +134,7 @@ void AdminInterface::createNewUser() {
     user.role = "user";
     ValidationServices validationService;
 
+    // valdiate ID
     while (true) {
     std::cout << "Enter id: ";
     if (std::cin >> user.id && validationService.isValidId(user.id)) break;
@@ -142,6 +143,7 @@ void AdminInterface::createNewUser() {
     std::cin.ignore(1000, '\n');
     }   
 
+    // Validate name
     while (true) {
     std::cout << "Enter name: ";
     std::cin >> user.name;

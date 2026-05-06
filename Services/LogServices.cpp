@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <ctime>  // for getting current time
+#include <ctime>  // for getting the current time
 #include "LogServices.h"
 
 void LogServices::addLog(std::string userName, std::string floorName, bool accessGranted) {
@@ -8,7 +8,7 @@ void LogServices::addLog(std::string userName, std::string floorName, bool acces
     time_t now = time(0);
     std::string currentTime = ctime(&now); // store the current time
 
-    // remove newline that ctime adds at the end 
+    // removing the newline that ctime adds at the end 
     currentTime.erase(currentTime.length() - 1);
 
     LogEntry entry;

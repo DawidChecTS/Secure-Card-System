@@ -4,7 +4,6 @@
 #include "UserServices.h"
 #include <vector>
 
-
 // Read all users from users.csv and returns them as a list
 std::vector<User> UserService::getAllUsers() {
 std::vector<User> users; // empty list to start
@@ -17,29 +16,29 @@ std::ifstream file("users.csv");
 
     std::string line;
     while (std::getline(file, line)) {
-    std::stringstream ss(line);
-    User user;
-    std::string id;
-    std::string clearanceLevel;
+        std::stringstream ss(line);
+        User user;
+        std::string id;
+        std::string clearanceLevel;
 
-    std::getline(ss, id, ',');
-    user.id = std::stoi(id);
-    std::getline(ss, user.name, ',');
-    std::getline(ss, user.email, ',');
-    std::getline(ss, user.phonenumber, ',');
-    std::getline(ss, user.card, ',');
-    std::getline(ss, clearanceLevel, ',');
-    user.clearanceLevel = std::stoi(clearanceLevel);
-    std::getline(ss, user.role, ',');
+        std::getline(ss, id, ',');
+        user.id = std::stoi(id);
+        std::getline(ss, user.name, ',');
+        std::getline(ss, user.email, ',');
+        std::getline(ss, user.phonenumber, ',');
+        std::getline(ss, user.card, ',');
+        std::getline(ss, clearanceLevel, ',');
+        user.clearanceLevel = std::stoi(clearanceLevel);
+        std::getline(ss, user.role, ',');
 
-    users.push_back(user);
-}
+        users.push_back(user);
+    }
 
     file.close();
     return users; // returns the full list
 }
 
-// Saves a new user to users.csv
+// Save a new user to users.csv
 void UserService::saveUser(User user) {
     std::ofstream file("users.csv", std::ios::app);
 

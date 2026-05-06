@@ -25,7 +25,7 @@ Admin AdminServices::findAdmin(int id, std::string password) {
 
         // check if both id AND password match
         if (admin.id == id && admin.password == password) {
-            return admin; // found and verified!
+            return admin;
         }
     }
 

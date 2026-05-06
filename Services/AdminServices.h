@@ -8,6 +8,4 @@ public:
     Admin findAdmin(int id, std::string password);
 
 };
-
-
 #endif

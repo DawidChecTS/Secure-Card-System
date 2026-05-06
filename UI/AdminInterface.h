@@ -3,7 +3,6 @@
 #include "../Models/User.h"
 #include "../Services/LogServices.h"
 
-
 class AdminInterface{
     public :
         bool adminLogin();
@@ -14,5 +13,4 @@ class AdminInterface{
         void listAllUsersView();
         void createNewUser();
 };
-
 #endif

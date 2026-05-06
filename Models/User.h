@@ -11,6 +11,4 @@ struct User{
     int clearanceLevel;
     std::string role;
 };
-
-
 #endif

@@ -9,6 +9,4 @@ struct LogEntry {
     std::string time;
     bool accessGranted;
 };
-
-
 #endif
