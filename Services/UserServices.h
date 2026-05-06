@@ -10,8 +10,8 @@ class UserService {
     public :
         std::vector<User> getAllUsers();
         void saveUser(User user);
-        
         User findUser(std::string input);
+        void deleteUser(int id);
 };
 
 

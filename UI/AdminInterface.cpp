@@ -115,6 +115,18 @@ void AdminInterface::listAllUsersView(){
     std::cout << "Card: " << user.card << "\n";
     std::cout << "----------------------\n";
     }
+
+    cout << "\n[1] Delete a user\n";
+    cout << "[2] Back\n";
+    int choice;
+    cin >> choice;
+
+    if (choice == 1) {
+        int id;
+        std::cout << "Enter users id to delete: ";
+        std::cin >> id;
+        userservice.deleteUser(id);
+    }
 }
 
 void AdminInterface::createNewUser() {
@@ -135,14 +147,6 @@ void AdminInterface::createNewUser() {
     std::cin >> user.name;
     if (validationService.isNameValid(user.name)) break;
     std::cout << "Invalid name! Name can not be empty! \n";
-    } 
-
-    while (true) {
-    std::cout << "Enter id: ";
-    if (std::cin >> user.id && validationService.isValidId(user.id)) break;
-    std::cout << "Invalid id! Must be a positive number.\n";
-    std::cin.clear();
-    std::cin.ignore(1000, '\n');
     } 
 
     // validate email

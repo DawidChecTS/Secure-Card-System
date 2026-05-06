@@ -73,3 +73,39 @@ User UserService::findUser(std::string input) {
     // if no user found, return an empty user
     return User{};
 }
+
+void UserService::deleteUser(int id) {
+    std::vector<User> users = getAllUsers(); 
+
+    // open file for writing
+    std::ofstream file("users.csv");
+
+    if (!file) {
+        std::cout << "Unable to open users.csv\n";
+        return;
+    }
+
+    bool found = false;
+    for (User user : users) {
+        if (user.id == id) {
+            found = true;
+            continue; // skip this user — effectively deleting them
+        }
+        // write everyone else back to the fileS
+        file << user.id << ','
+             << user.name << ','
+             << user.email << ','
+             << user.phonenumber << ','
+             << user.card << ','
+             << user.clearanceLevel << ','
+             << user.role << '\n';
+    }
+
+    file.close();
+
+    if (found) {
+        std::cout << "User deleted successfully!\n";
+    } else {
+        std::cout << "User not found!\n";
+    }
+}
