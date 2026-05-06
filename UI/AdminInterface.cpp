@@ -16,8 +16,16 @@ bool AdminInterface::adminLogin(){
 
     maininterface.headline();
     cout << "* Admin login *\n";
-    cout << "Enter employee id: ";
-    cin >> id;
+
+    // validate id input
+    while (true) {
+        cout << "Enter employee id: ";
+        if (cin >> id) break; // if valid number, continue
+        cout << "Invalid id! Must be a number.\n";
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+
     cout << "Enter password: ";
     cin >> password;
 
