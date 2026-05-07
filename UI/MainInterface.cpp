@@ -5,7 +5,7 @@
 using namespace std;
 
 void MainInterface::headline(){
-    cout << "----- SECURE CARD SYSTEM -------\n";
+    cout << "\n----- SECURE CARD SYSTEM -------\n";
 }
 
 void MainInterface::showMainMenu(){
@@ -24,7 +24,7 @@ void MainInterface::printLogOut() {
 }
 
 bool MainInterface::isUserChoiceValidNumber(int a){
-    return (a >= 0 && a <= 4);
+    return a >= 0 && a <= 4;
 }
 
 void MainInterface::displayEnteringOptions(){

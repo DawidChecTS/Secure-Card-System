@@ -47,7 +47,13 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
 
     cout << "Choose floor id to access: ";
     int floorChoice;
-    cin >> floorChoice;
+    // validate floor choice
+    if (!(cin >> floorChoice)) {
+        cout << "Invalid input! Must be a floor number.\n";
+        cin.clear();
+        cin.ignore(1000, '\n');
+        return;
+    }
 
     for (Floor floor : floors) {
         if (floor.id == floorChoice) {
