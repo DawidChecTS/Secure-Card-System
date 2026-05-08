@@ -40,6 +40,7 @@ int MainInterface::validateUserInput(){
             cout << "Invalid Input! \n";
             cin.clear(); // stops accepting the new input, resets the error
             cin.ignore(1000, '\n'); // leftover input is deleted
+            showMainMenu();
             continue;
         }
         return b;
