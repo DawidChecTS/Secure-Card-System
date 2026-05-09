@@ -32,3 +32,35 @@ std::vector<Floor> FloorServices::getAllFloors() {
     file.close();
     return floors;
 }
+
+void FloorServices::updateFloor(Floor updatedFloor) {
+    std::vector<Floor> floors = getAllFloors();
+
+    std::ofstream file("floors.csv");
+    if (!file) {
+        std::cout << "Unable to open floors.csv\n";
+        return;
+    }
+
+    bool found = false;
+    for (Floor floor : floors) {
+        if (floor.id == updatedFloor.id) {
+            found = true;
+            file << updatedFloor.id << ','
+                 << updatedFloor.name << ','
+                 << updatedFloor.clearanceLevel << '\n';
+        } else {
+            file << floor.id << ','
+                 << floor.name << ','
+                 << floor.clearanceLevel << '\n';
+        }
+    }
+
+    file.close();
+
+    if (found) {
+        std::cout << "Floor updated successfully!\n";
+    } else {
+        std::cout << "Floor not found!\n";
+    }
+}

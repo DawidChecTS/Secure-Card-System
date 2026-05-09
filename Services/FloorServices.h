@@ -6,5 +6,6 @@
 class FloorServices {
     public:
         std::vector<Floor> getAllFloors();
+        void updateFloor(Floor updatedFloor);
 };
 #endif

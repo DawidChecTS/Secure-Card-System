@@ -76,7 +76,8 @@ void AdminInterface::chooseFloor(LogServices& logServices){
         if (floor.id == floorChoice) {
             // show options for this floor
             cout << "\n[1] View access history\n";
-            cout << "[2] Back\n";
+            cout << "[2] Change floor information\n";
+            cout << "[3] Back\n";
             int choice;
             cin >> choice;
 
@@ -94,8 +95,27 @@ void AdminInterface::chooseFloor(LogServices& logServices){
                         cout << "Result: " << (entry.accessGranted ? "GRANTED" : "DENIED") << "\n";
                         cout << "-------------------------\n";
                     }
-                }
+                }   
             }
+            else if (choice == 2) {
+                std::string tempName;
+                std::cout << "Enter new name (" << floor.name << "): ";
+                std::cin >> tempName;
+                floor.name = tempName;
+                std::cin.ignore(1000, '\n'); // ignore leftover newline
+
+                while (true) {
+                    std::cout << "Enter new clearance level (" << floor.clearanceLevel << "): ";
+                    if (std::cin >> floor.clearanceLevel &&
+                        floor.clearanceLevel >= 0 &&
+                        floor.clearanceLevel <= 3) break;
+                    std::cout << "Invalid! Must be between 0 and 3.\n";
+                    std::cin.clear();
+                    std::cin.ignore(1000, '\n');
+                }
+                floorService.updateFloor(floor);
+            }
+            return;
             return;
         }
     }
@@ -162,7 +182,7 @@ void AdminInterface::listAllUsersView(){
             std::string tempEmail;
             std::cout << "Enter new email (" << user.email << "): ";
             std::cin >> tempEmail;
-            
+
             if (validationService.isValidEmail(tempEmail)) {
                 user.email = tempEmail; // only update if valid
                 break;
