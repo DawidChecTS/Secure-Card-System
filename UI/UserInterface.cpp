@@ -64,7 +64,7 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
                 cout << "ACCESS GRANTED to " << floor.name << "!\n";
                 logServices.addLog(user.name, floor.name, true); // log if access granted
             } else {
-                cout << "ACCESS DENIED! Your clearance level is too low.\n";
+                cout << "ACCESS DENIED!\n";
                 logServices.addLog(user.name, floor.name, false); // log if access denied
             }
             return;

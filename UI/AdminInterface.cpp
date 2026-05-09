@@ -127,14 +127,6 @@ void AdminInterface::chooseFloor(LogServices& logServices){
     cout << "Floor not found!\n";
 }
 
-void AdminInterface::chooseUser(){
-    MainInterface mainterface;
-
-    mainterface.headline();
-    cout << "* User login *\n";
-    cout << "Choose user: ";
-}
-
 void AdminInterface::listAllUsersView(){
     UserService userservice;
     std::vector<User> users = userservice.getAllUsers();
@@ -255,12 +247,12 @@ void AdminInterface::createNewUser() {
 
     // validate clearance level
     while (true) {
-        std::cout << "Enter clearance level (0-5): ";
+        std::cout << "Enter clearance level (0-3): ";
         if (std::cin >> user.clearanceLevel && 
         user.clearanceLevel >= 0 && 
         user.clearanceLevel <= 3) 
         break;
-        std::cout << "Invalid! Must be a number between 0 and 5.\n";
+        std::cout << "Invalid clearance level!\n";
         std::cin.clear();
         std::cin.ignore(1000, '\n');
     }

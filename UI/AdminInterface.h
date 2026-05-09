@@ -8,7 +8,6 @@ class AdminInterface{
         bool adminLogin();
         void displayAdminOperations();
         void chooseFloor(LogServices& logServices);
-        void chooseUser();
         void listAllUsersView();
         void createNewUser();
 };
