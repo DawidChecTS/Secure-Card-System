@@ -80,6 +80,7 @@ void UserInterface::showInfoAboutAccount(User user){
     cout << "Email: " << user.email << "\n";
     cout << "Phone number: " << user.phonenumber << "\n";
     cout << "Card: " << user.card << "\n";
+    cout << "Clearance level: " << user.clearanceLevel << "\n";
 }
 
 void UserInterface::displayUserOperations(){

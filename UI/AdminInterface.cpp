@@ -121,6 +121,7 @@ void AdminInterface::listAllUsersView(){
     std::cout << "Email: " << user.email << "\n";
     std::cout << "Phone: " << user.phonenumber << "\n";
     std::cout << "Card: " << user.card << "\n";
+    std::cout << "Clearance level: " << user.clearanceLevel << "\n";
     std::cout << "----------------------\n";
     }
 
@@ -178,7 +179,17 @@ void AdminInterface::createNewUser() {
     std::cout << "Enter card number: ";
     std::cin >> user.card;
 
-    user.clearanceLevel = 0; // default clearance level
+    // validate clearance level
+    while (true) {
+        std::cout << "Enter clearance level (0-5): ";
+        if (std::cin >> user.clearanceLevel && 
+        user.clearanceLevel >= 0 && 
+        user.clearanceLevel <= 3) 
+        break;
+        std::cout << "Invalid! Must be a number between 0 and 5.\n";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+}
 
     UserService userService;
     userService.saveUser(user);
