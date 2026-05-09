@@ -58,7 +58,7 @@ int main(){
                 while(true){
                     admininterface.displayAdminOperations();
                     userChoice = maininterface.validateUserInput();
-
+                    if (userChoice == -1) continue; // if input is not a number, show menu again
                     if (userChoice == 1){
                         admininterface.chooseFloor(logServices);
                     }
