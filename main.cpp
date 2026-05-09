@@ -19,6 +19,8 @@ int main(){
         maininterface.showMainMenu();
         userChoice = maininterface.validateUserInput();
 
+        if (userChoice == -1) continue;
+
         switch (userChoice){
             // putting {} to create a new scope for variables declared inside case 1
             case 1:{
@@ -33,6 +35,8 @@ int main(){
                 userinterface.displayUserOperations();
                 userChoice = maininterface.validateUserInput();
 
+                if (userChoice == -1) continue;
+                
                 if (userChoice == 1) {
                     userinterface.listAllFloors(loggedInUser, logServices);
                 }
@@ -58,7 +62,8 @@ int main(){
                 while(true){
                     admininterface.displayAdminOperations();
                     userChoice = maininterface.validateUserInput();
-                    if (userChoice == -1) continue; // if input is not a number, show menu again
+                    if (userChoice == -1) continue;
+
                     if (userChoice == 1){
                         admininterface.chooseFloor(logServices);
                     }

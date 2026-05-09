@@ -102,7 +102,8 @@ void UserInterface::changeInformation(User& user){
 
     std::string tempName;
     std::cout << "Enter new name (" << user.name << "): ";
-    std::cin >> tempName;
+    std::cin.ignore(1000, '\n');
+    std::getline(std::cin, tempName);
     user.name = tempName;
 
     while (true) {

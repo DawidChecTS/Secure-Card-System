@@ -34,14 +34,38 @@ void MainInterface::displayEnteringOptions(){
 }
 
 int MainInterface::validateUserInput(){
-    int b;
-        while (true){
-        if (!(cin >> b && (isUserChoiceValidNumber(b)))){
-            cout << "Invalid Input! \n";
-            cin.clear(); // stops accepting the new input, resets the error
-            cin.ignore(1000, '\n'); // leftover input is deleted
-            return -1; // return -1 to indicate invalid input
+    std::string input;
+    cin >> input;
+
+    // check if input is empty
+    if (input.empty()) {
+        cout << "Invalid Input!\n";
+        return -1;
+    }
+
+    // check if input contains only digits
+    for (char c : input) {
+        if (!isdigit(c)) {
+            cout << "Invalid Input!\n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            return -1;
+        }
+    }
+
+    try {
+        int b = stoi(input);
+        if (!isUserChoiceValidNumber(b)) {
+            cout << "Invalid Input!\n";
+            return -1;
         }
         return b;
+    } catch (...) {
+        cout << "Invalid Input!\n";
+        return -1;
     }
 }
+
+
+
+

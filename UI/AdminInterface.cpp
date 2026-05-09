@@ -69,7 +69,12 @@ void AdminInterface::chooseFloor(LogServices& logServices){
     // pick a floor
     cout << "Choose floor id: ";
     int floorChoice;
-    cin >> floorChoice;
+    if (!(cin >> floorChoice)) {
+        cout << "Invalid input! Must be a number.\n";
+        cin.clear();
+        cin.ignore(1000, '\n');
+        return; // go back to admin menu
+    }
 
     // find the chosen floor
     for (Floor floor : floors) {
@@ -100,9 +105,10 @@ void AdminInterface::chooseFloor(LogServices& logServices){
             else if (choice == 2) {
                 std::string tempName;
                 std::cout << "Enter new name (" << floor.name << "): ";
-                std::cin >> tempName;
+                std::cin.ignore(1000, '\n');
+                std::getline(std::cin, tempName);
                 floor.name = tempName;
-                std::cin.ignore(1000, '\n'); // ignore leftover newline
+
 
                 while (true) {
                     std::cout << "Enter new clearance level (" << floor.clearanceLevel << "): ";
@@ -115,7 +121,6 @@ void AdminInterface::chooseFloor(LogServices& logServices){
                 }
                 floorService.updateFloor(floor);
             }
-            return;
             return;
         }
     }
