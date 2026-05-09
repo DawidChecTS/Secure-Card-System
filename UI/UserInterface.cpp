@@ -4,6 +4,8 @@
 #include <string>
 #include "../Services/UserServices.h"
 #include "../Services/FloorServices.h"
+#include "../Services/LogServices.h"
+#include "../Services/ValidationServices.h"
 
 using namespace std;
 
@@ -90,5 +92,40 @@ void UserInterface::displayUserOperations(){
     cout << "\n";
     cout << "[1] List all available floors \n";
     cout << "[2] Show personal information \n";
-    cout << "[3] Log out \n"; 
+    cout << "[3] Change personal information \n";
+    cout << "[4] Log out \n"; 
+}
+
+void UserInterface::changeInformation(User& user){
+    UserService userService;
+    ValidationServices validationService;
+
+    std::string tempName;
+    std::cout << "Enter new name (" << user.name << "): ";
+    std::cin >> tempName;
+    user.name = tempName;
+
+    while (true) {
+        std::string tempEmail;
+        std::cout << "Enter new email (" << user.email << "): ";
+        std::cin >> tempEmail;
+        if (validationService.isValidEmail(tempEmail)) {
+            user.email = tempEmail;
+            break;
+        }
+        std::cout << "Invalid email!\n";
+    }
+
+    while (true) {
+        std::string tempPhone;
+        std::cout << "Enter new phone (" << user.phonenumber << "): ";
+        std::cin >> tempPhone;
+        if (validationService.isValidPhoneNumber(tempPhone)) {
+            user.phonenumber = tempPhone;
+            break;
+        }
+        std::cout << "Invalid phone!\n";
+    }
+
+    userService.updateUser(user);
 }
