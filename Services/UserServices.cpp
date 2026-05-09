@@ -108,3 +108,47 @@ void UserService::deleteUser(int id) {
         std::cout << "User not found!\n";
     }
 }
+
+void UserService::updateUser(User updatedUser) {
+    std::vector<User> users = getAllUsers();
+
+    std::ofstream file("users.csv");
+    if (!file) {
+        std::cout << "Unable to open users.csv\n";
+        return;
+    }
+
+    bool found = false;
+    for (User user : users) {
+        if (user.id == updatedUser.id) {
+            found = true;
+            // write updated user instead of old one
+            file << updatedUser.id << ','
+                 << updatedUser.name << ','
+                 << updatedUser.email << ','
+                 << updatedUser.phonenumber << ','
+                 << updatedUser.card << ','
+                 << updatedUser.clearanceLevel << ','
+                 << updatedUser.role << '\n';
+        } 
+        else 
+        {
+            // write everyone else unchanged
+            file << user.id << ','
+                 << user.name << ','
+                 << user.email << ','
+                 << user.phonenumber << ','
+                 << user.card << ','
+                 << user.clearanceLevel << ','
+                 << user.role << '\n';
+        }
+    }
+
+    file.close();
+
+    if (found) {
+        std::cout << "User updated successfully!\n";
+    } else {
+        std::cout << "User not found!\n";
+    }
+}

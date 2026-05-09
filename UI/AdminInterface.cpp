@@ -126,15 +126,63 @@ void AdminInterface::listAllUsersView(){
     }
 
     cout << "\n[1] Delete a user\n";
-    cout << "[2] Back\n";
+    cout << "[2] Change user information\n";
+    cout << "[3] Back\n";
     int choice;
     cin >> choice;
 
     if (choice == 1) {
         int id;
-        std::cout << "Enter users id to delete: ";
+        std::cout << "Enter user id to delete: ";
         std::cin >> id;
         userservice.deleteUser(id);
+    }
+    else if (choice == 2) {
+        int id;
+        std::cout << "Enter user id to change: ";
+        std::cin >> id;
+
+        // find the user first
+        User user = userservice.findUser(std::to_string(id));
+        if (user.name.empty()) {
+            std::cout << "User not found!\n";
+            return;
+        }
+
+        ValidationServices validationService;
+
+        // change name
+        std::string tempName;
+        std::cout << "Enter new name (" << user.name << "): ";
+        std::cin >> tempName;
+        user.name = tempName;
+
+        // change email +  validation
+        while (true) {
+            std::string tempEmail;
+            std::cout << "Enter new email (" << user.email << "): ";
+            std::cin >> tempEmail;
+            
+            if (validationService.isValidEmail(tempEmail)) {
+                user.email = tempEmail; // only update if valid
+                break;
+            }
+            std::cout << "Invalid email!\n";
+        }
+
+        // change phone + validation
+        while (true) {
+        std::string tempPhone;
+        std::cout << "Enter new phone (" << user.phonenumber << "): ";
+        std::cin >> tempPhone;
+        if (validationService.isValidPhoneNumber(tempPhone)) {
+            user.phonenumber = tempPhone;
+            break;
+        }
+        std::cout << "Invalid phone!\n";
+        }
+
+        userservice.updateUser(user);
     }
 }
 
@@ -189,7 +237,7 @@ void AdminInterface::createNewUser() {
         std::cout << "Invalid! Must be a number between 0 and 5.\n";
         std::cin.clear();
         std::cin.ignore(1000, '\n');
-}
+    }
 
     UserService userService;
     userService.saveUser(user);

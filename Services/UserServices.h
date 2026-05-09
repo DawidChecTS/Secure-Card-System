@@ -10,5 +10,6 @@ class UserService {
         void saveUser(User user);
         User findUser(std::string input);
         void deleteUser(int id);
+        void updateUser(User updatedUser);
 };
 #endif
