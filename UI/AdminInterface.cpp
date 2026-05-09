@@ -174,13 +174,14 @@ void AdminInterface::listAllUsersView(){
             return;
         }
 
-        ValidationServices validationService;
-
         // change name
         std::string tempName;
         std::cout << "Enter new name (" << user.name << "): ";
-        std::cin >> tempName;
+        std::cin.ignore(1000, '\n');
+        std::getline(std::cin, tempName);
         user.name = tempName;
+
+        ValidationServices validationService;
 
         // change email +  validation
         while (true) {

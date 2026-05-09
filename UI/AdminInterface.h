@@ -9,7 +9,6 @@ class AdminInterface{
         void displayAdminOperations();
         void chooseFloor(LogServices& logServices);
         void chooseUser();
-        void listAllFloorsView();
         void listAllUsersView();
         void createNewUser();
 };
