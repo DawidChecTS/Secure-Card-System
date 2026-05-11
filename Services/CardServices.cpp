@@ -35,3 +35,16 @@ std::vector<Card> CardService::getAllCards() {
     file.close();
     return cards;
 }
+
+void CardService::saveCard(Card card) {
+    std::ofstream file("cards.csv", std::ios::app);
+
+    if (!file) {
+        std::cout << "Unable to open cards.csv file\n";
+        return;
+    }
+
+    file << card.id << ',' << card.userId << ',' << card.clearanceLevel << '\n';
+
+    file.close();
+}
