@@ -3,6 +3,7 @@
 
 struct Card{
     int id;
+    int userId;
     int clearanceLevel;
 };
 #endif
