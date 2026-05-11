@@ -48,6 +48,7 @@ void CardService::saveCard(Card card) {
     << card.userId << ','
     << card.clearanceLevel << '\n';
 
+    std::cout << "Card saved successfully!\n";
     file.close();
 }
 
@@ -61,4 +62,35 @@ Card CardService::findCardByUserId(int userId) {
     }
 
     return Card{}; // in case no card found
+}
+
+void CardService::deleteCardByUserId(int userId) {
+    std::vector<Card> cards = getAllCards();
+
+    // open file for writing
+    std::ofstream file("cards.csv");
+
+    if (!file) {
+        std::cout << "Unable to open cards.csv file\n";
+        return;
+    }
+    bool found = false;
+    for (Card card : cards) {
+        if (card.userId == userId) {
+            found = true;
+            continue; // skip this card —  deletes it
+        }
+
+        // write everyone else back to the file
+        file << card.id << ','
+             << card.userId << ','
+             << card.clearanceLevel << '\n';
+    }
+
+    file.close();
+    if (found) {
+    std::cout << "Card deleted successfully!\n";
+    } else {
+    std::cout << "Card not found!\n";
+    }
 }

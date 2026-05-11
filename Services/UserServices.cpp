@@ -43,7 +43,7 @@ void UserService::saveUser(User user) {
     std::ofstream file("users.csv", std::ios::app);
 
     if (!file) {
-        std::cout << "Unable to open users.csv\n";
+        std::cout << "Unable to open users.csv file\n";
         return;
     }
 
@@ -80,7 +80,7 @@ void UserService::deleteUser(int id) {
     std::ofstream file("users.csv");
 
     if (!file) {
-        std::cout << "Unable to open users.csv\n";
+        std::cout << "Unable to open users.csv file\n";
         return;
     }
 
@@ -88,9 +88,9 @@ void UserService::deleteUser(int id) {
     for (User user : users) {
         if (user.id == id) {
             found = true;
-            continue; // skip this user — effectively deleting them
+            continue; // skip this user — deletes it
         }
-        // write everyone else back to the fileS
+        // write everyone else back to the file
         file << user.id << ','
              << user.name << ','
              << user.email << ','
