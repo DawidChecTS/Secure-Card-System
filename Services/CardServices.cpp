@@ -44,7 +44,21 @@ void CardService::saveCard(Card card) {
         return;
     }
 
-    file << card.id << ',' << card.userId << ',' << card.clearanceLevel << '\n';
+    file << card.id << ','
+    << card.userId << ','
+    << card.clearanceLevel << '\n';
 
     file.close();
+}
+
+Card CardService::findCardByUserId(int userId) {
+    std::vector<Card> cards = getAllCards();
+
+    for (Card card : cards) {
+        if (card.userId == userId) {
+            return card;
+        }
+    }
+
+    return Card{}; // in case no card found
 }
