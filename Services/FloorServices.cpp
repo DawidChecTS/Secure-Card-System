@@ -15,6 +15,7 @@ std::vector<Floor> FloorServices::getAllFloors() {
     // read each line of the file, create a Floor object, and add it to the vector
     std::string line;
     while (std::getline(file, line)) {
+        if (line.empty()) continue;
         std::stringstream ss(line);
         Floor floor;
         std::string id;
