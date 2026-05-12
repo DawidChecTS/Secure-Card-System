@@ -5,6 +5,7 @@
 #include "../Services/AdminServices.h"
 #include "../Services/FloorServices.h"
 #include "../Services/ValidationServices.h"
+#include "../Services/CardServices.h"
 #include <fstream>
 
 using namespace std;
@@ -130,15 +131,17 @@ void AdminInterface::chooseFloor(LogServices& logServices){
 void AdminInterface::listAllUsersView(){
     UserService userservice;
     std::vector<User> users = userservice.getAllUsers();
+    CardService cardService;
 
     cout << '\n';
     for (User user : users) {
+    Card card = cardService.findCardByUserId(user.id);
     std::cout << "ID: " << user.id << "\n";
     std::cout << "Name: " << user.name << "\n";
     std::cout << "Email: " << user.email << "\n";
     std::cout << "Phone: " << user.phonenumber << "\n";
-    std::cout << "Card: " << user.card << "\n";
-    std::cout << "Clearance level: " << user.clearanceLevel << "\n";
+    std::cout << "Card ID: " << card.id << "\n";
+    std::cout << "Clearance level: "<< card.clearanceLevel << "\n";
     std::cout << "----------------------\n";
     }
 
@@ -153,6 +156,11 @@ void AdminInterface::listAllUsersView(){
         std::cout << "Enter user id to delete: ";
         std::cin >> id;
         userservice.deleteUser(id);
+
+        // delete the card associated with this user too
+        CardService cardService;
+        cardService.deleteCardByUserId(id);
+        std::cout << "User has been deleted!\n";
     }
     else if (choice == 2) {
         int id;
@@ -208,6 +216,7 @@ void AdminInterface::createNewUser() {
     User user;
     user.role = "user";
     ValidationServices validationService;
+    CardService cardService;
 
     // valdiate ID
     while (true) {
@@ -242,15 +251,23 @@ void AdminInterface::createNewUser() {
         std::cout << "Invalid phone! Must be 07XXXXXXXX or +467XXXXXXXX\n";
     }
 
-    std::cout << "Enter card number: ";
-    std::cin >> user.card;
+    Card card;
+    card.userId = user.id;
+
+    while (true) {
+    std::cout << "Enter card id: ";
+    if (std::cin >> card.id && card.id > 0) break;
+    std::cout << "Invalid card id! Must be a positive number.\n";
+    std::cin.clear();
+    std::cin.ignore(1000, '\n');
+}
 
     // validate clearance level
     while (true) {
         std::cout << "Enter clearance level (0-3): ";
-        if (std::cin >> user.clearanceLevel && 
-        user.clearanceLevel >= 0 && 
-        user.clearanceLevel <= 3) 
+        if (std::cin >> card.clearanceLevel && 
+        card.clearanceLevel >= 0 && 
+        card.clearanceLevel <= 3) 
         break;
         std::cout << "Invalid clearance level!\n";
         std::cin.clear();
@@ -259,4 +276,6 @@ void AdminInterface::createNewUser() {
 
     UserService userService;
     userService.saveUser(user);
+    cardService.saveCard(card);
+    std::cout << "User created successfully!\n";
 }

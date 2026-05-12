@@ -19,16 +19,12 @@ std::ifstream file("users.csv");
         std::stringstream ss(line);
         User user;
         std::string id;
-        std::string clearanceLevel;
 
         std::getline(ss, id, ',');
         user.id = std::stoi(id);
         std::getline(ss, user.name, ',');
         std::getline(ss, user.email, ',');
         std::getline(ss, user.phonenumber, ',');
-        std::getline(ss, user.card, ',');
-        std::getline(ss, clearanceLevel, ',');
-        user.clearanceLevel = std::stoi(clearanceLevel);
         std::getline(ss, user.role, ',');
 
         users.push_back(user);
@@ -51,8 +47,6 @@ void UserService::saveUser(User user) {
          << user.name << ','
          << user.email << ','
          << user.phonenumber << ','
-         << user.card << ','
-         << user.clearanceLevel << ','
          << user.role << '\n';
 
     std::cout << "User saved successfully!\n";
@@ -95,8 +89,6 @@ void UserService::deleteUser(int id) {
              << user.name << ','
              << user.email << ','
              << user.phonenumber << ','
-             << user.card << ','
-             << user.clearanceLevel << ','
              << user.role << '\n';
     }
 
@@ -127,8 +119,6 @@ void UserService::updateUser(User updatedUser) {
                  << updatedUser.name << ','
                  << updatedUser.email << ','
                  << updatedUser.phonenumber << ','
-                 << updatedUser.card << ','
-                 << updatedUser.clearanceLevel << ','
                  << updatedUser.role << '\n';
         } 
         else 
@@ -138,8 +128,6 @@ void UserService::updateUser(User updatedUser) {
                  << user.name << ','
                  << user.email << ','
                  << user.phonenumber << ','
-                 << user.card << ','
-                 << user.clearanceLevel << ','
                  << user.role << '\n';
         }
     }

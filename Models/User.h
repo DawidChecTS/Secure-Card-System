@@ -7,8 +7,6 @@ struct User{
     std::string name;
     std::string email;
     std::string phonenumber;
-    std::string card;
-    int clearanceLevel;
     std::string role;
 };
 #endif

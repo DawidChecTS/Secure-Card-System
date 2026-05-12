@@ -6,6 +6,7 @@
 #include "../Services/FloorServices.h"
 #include "../Services/LogServices.h"
 #include "../Services/ValidationServices.h"
+#include "../Services/CardServices.h"
 
 using namespace std;
 
@@ -34,11 +35,11 @@ User UserInterface::userLogin(){
 void UserInterface::listAllFloors(User user, LogServices& logServices){
     FloorServices floorService;
     vector<Floor> floors = floorService.getAllFloors();
+    Card card = CardService().findCardByUserId(user.id);
 
     MainInterface maininterface;
     maininterface.headline();
-    cout << '\n';
-    cout << "All floors: \n";
+    cout << "\n All floors: \n";
 
     for (Floor floor : floors){
         cout << "ID: " << floor.id << '\n';
@@ -60,7 +61,7 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
     for (Floor floor : floors) {
         if (floor.id == floorChoice) {
             // check clearance
-            if (user.clearanceLevel >= floor.clearanceLevel) {
+            if (card.clearanceLevel >= floor.clearanceLevel) {
                 cout << "ACCESS GRANTED to " << floor.name << "!\n";
                 logServices.addLog(user.name, floor.name, true); // log if access granted
             } else {
@@ -75,14 +76,15 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
 
 void UserInterface::showInfoAboutAccount(User user){
     MainInterface maininterface;
+    Card card = CardService().findCardByUserId(user.id);
+
     maininterface.headline();
-    cout << '\n';
-    cout << "Info about account: \n";
+    cout << "\n Info about account: \n";
     cout << "Name: " << user.name << "\n";
     cout << "Email: " << user.email << "\n";
     cout << "Phone number: " << user.phonenumber << "\n";
-    cout << "Card: " << user.card << "\n";
-    cout << "Clearance level: " << user.clearanceLevel << "\n";
+    cout << "Card ID: " << card.id << "\n";
+    cout << "Clearance level: " << card.clearanceLevel << "\n";
 }
 
 void UserInterface::displayUserOperations(){
