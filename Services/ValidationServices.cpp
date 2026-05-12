@@ -22,16 +22,16 @@ bool ValidationServices::isValidPassword(std::string password){
     bool hasSpecial = false;
 
     for (char c : password) {
-        if (isupper(c)) hasUpper = true; // check for uppercase
-        if (islower(c)) hasLower = true; // check for lowercase
-        if (isdigit(c)) hasNumber = true; // check for number
-        if (ispunct(c)) hasSpecial = true; // check for special character
+        if (isupper(c)) hasUpper = true;
+        if (islower(c)) hasLower = true;
+        if (isdigit(c)) hasNumber = true;
+        if (ispunct(c)) hasSpecial = true;
     }
     return hasUpper && hasLower && hasNumber && hasSpecial;
 }
 
 // size_t is an unsigned integer type that can represent the size of any object in bytes. 
-
+// It is commonly used for array indexing and loop counting, and is the type returned by the sizeof operator.
 bool ValidationServices::isValidEmail(std::string email) {
     // find @ symbol
     size_t atPos = -1;
@@ -59,6 +59,7 @@ bool ValidationServices::isValidEmail(std::string email) {
     return true;
 }
 
+// Validates Swedish phone numbers in the format 07XXXXXXXX (10 digits) or +467XXXXXXXX (12 chars)
 bool ValidationServices::isValidPhoneNumber(std::string phone) {
     // must be 07XXXXXXXX (10 digits) or +467XXXXXXXX (12 chars)
     if (phone.length() == 10) {

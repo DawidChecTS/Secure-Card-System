@@ -21,6 +21,7 @@ std::vector<Card> CardService::getAllCards() {
         std::string id;
         std::string userId;
         std::string clearanceLevel;
+
         // read the id, userId, and clearance level from the line and set them in the Card object
         std::getline(ss, id, ',');
         card.id = std::stoi(id);
@@ -36,7 +37,9 @@ std::vector<Card> CardService::getAllCards() {
     return cards;
 }
 
+// a method to save a card object to the csv file
 void CardService::saveCard(Card card) {
+    // open the file in append mode to add a new card without overwriting existing ones
     std::ofstream file("cards.csv", std::ios::app);
 
     if (!file) {
@@ -51,6 +54,7 @@ void CardService::saveCard(Card card) {
     file.close();
 }
 
+// a method to find a card by user ID and return it as a card object
 Card CardService::findCardByUserId(int userId) {
     std::vector<Card> cards = getAllCards();
 
@@ -63,6 +67,7 @@ Card CardService::findCardByUserId(int userId) {
     return Card{}; // in case no card found
 }
 
+// a method to delete a card by user ID
 void CardService::deleteCardByUserId(int userId) {
     std::vector<Card> cards = getAllCards();
 

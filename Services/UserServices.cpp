@@ -13,13 +13,14 @@ std::ifstream file("users.csv");
         std::cout << "Unable to open users.csv file\n";
         return users;
     }
-
+    // read each line of the file, create a User object, and add it to the list
     std::string line;
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         User user;
         std::string id;
 
+        // read the id, name, email, phone number, and role from the line and set them in the User object
         std::getline(ss, id, ',');
         user.id = std::stoi(id);
         std::getline(ss, user.name, ',');
@@ -52,6 +53,7 @@ void UserService::saveUser(User user) {
     file.close();
 }
 
+// Find a user by id or name and return the User object if found, otherwise return an empty User object
 User UserService::findUser(std::string input) {
     std::vector<User> users = getAllUsers(); // get all users from CSV file
 
@@ -61,11 +63,11 @@ User UserService::findUser(std::string input) {
             return user; // return user if found
         }
     }
-
     // if no user found, return an empty user
     return User{};
 }
 
+// Delete a user by id from users.csv
 void UserService::deleteUser(int id) {
     std::vector<User> users = getAllUsers(); 
 
@@ -100,6 +102,7 @@ void UserService::deleteUser(int id) {
     }
 }
 
+// Update a user's information in users.csv based on the provided User object (matches by id)
 void UserService::updateUser(User updatedUser) {
     std::vector<User> users = getAllUsers();
 
@@ -109,10 +112,12 @@ void UserService::updateUser(User updatedUser) {
         return;
     }
 
+    // iterate through the existing users and write them back to the file, updating the one that matches the id of the updatedUser
     bool found = false;
     for (User user : users) {
         if (user.id == updatedUser.id) {
             found = true;
+            
             // write updated user instead of old one
             file << updatedUser.id << ','
                  << updatedUser.name << ','

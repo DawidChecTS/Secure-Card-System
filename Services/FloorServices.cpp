@@ -20,6 +20,7 @@ std::vector<Floor> FloorServices::getAllFloors() {
         Floor floor;
         std::string id;
         std::string clearanceLevel;
+
         // read the id, name, and clearance level from the line and set them in the Floor object
         std::getline(ss, id, ',');
         floor.id = std::stoi(id);
@@ -34,6 +35,7 @@ std::vector<Floor> FloorServices::getAllFloors() {
     return floors;
 }
 
+// a method to update a floor's information in the csv file based on the provided Floor object
 void FloorServices::updateFloor(Floor updatedFloor) {
     std::vector<Floor> floors = getAllFloors();
 
@@ -43,6 +45,7 @@ void FloorServices::updateFloor(Floor updatedFloor) {
         return;
     }
 
+    // iterate through the existing floors and write them back to the file, updating the one that matches the id of the updatedFloor
     bool found = false;
     for (Floor floor : floors) {
         if (floor.id == updatedFloor.id) {
