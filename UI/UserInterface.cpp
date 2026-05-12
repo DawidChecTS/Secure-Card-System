@@ -78,23 +78,31 @@ void UserInterface::showInfoAboutAccount(User user){
     MainInterface maininterface;
     Card card = CardService().findCardByUserId(user.id);
 
-    maininterface.headline();
-    cout << "\n Info about account: \n";
-    cout << "Name: " << user.name << "\n";
-    cout << "Email: " << user.email << "\n";
-    cout << "Phone number: " << user.phonenumber << "\n";
-    cout << "Card ID: " << card.id << "\n";
-    cout << "Clearance level: " << card.clearanceLevel << "\n";
-    int choice;
+     while (true) {
+        maininterface.headline();
 
-    cout << "\n[1] Go back \n";
-    if (!(cin >> choice)) {
-        cout << "Invalid input! Must be a number.\n";
-        cin.clear();
-        cin.ignore(1000, '\n');
-        return;
+        cout << "\nInfo about account:\n";
+        cout << "Name: " << user.name << "\n";
+        cout << "Email: " << user.email << "\n";
+        cout << "Phone number: " << user.phonenumber << "\n";
+        cout << "Card ID: " << card.id << "\n";
+        cout << "Clearance level: " << card.clearanceLevel << "\n";
+
+        cout << "\n[1] Go back\n";
+        int choice;
+        if (!(cin >> choice)) {
+            cout << "Invalid input! Must be a number.\n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            return; // go back to previous menu
+        }
+
+        cout << "Invalid choice!\n";
     }
-    
 }
 
 void UserInterface::displayUserOperations(){
