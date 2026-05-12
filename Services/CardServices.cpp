@@ -48,7 +48,6 @@ void CardService::saveCard(Card card) {
     << card.userId << ','
     << card.clearanceLevel << '\n';
 
-    std::cout << "Card saved successfully!\n";
     file.close();
 }
 

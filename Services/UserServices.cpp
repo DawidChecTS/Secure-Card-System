@@ -49,7 +49,6 @@ void UserService::saveUser(User user) {
          << user.phonenumber << ','
          << user.role << '\n';
 
-    std::cout << "User saved successfully!\n";
     file.close();
 }
 
