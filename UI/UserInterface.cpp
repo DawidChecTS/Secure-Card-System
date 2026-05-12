@@ -81,14 +81,16 @@ void UserInterface::showInfoAboutAccount(User user){
      while (true) {
         maininterface.headline();
 
-        cout << "\nInfo about account:\n";
+        cout << "\nYour account:\n";
+        cout << "----------------------\n";
         cout << "Name: " << user.name << "\n";
         cout << "Email: " << user.email << "\n";
         cout << "Phone number: " << user.phonenumber << "\n";
         cout << "Card ID: " << card.id << "\n";
         cout << "Clearance level: " << card.clearanceLevel << "\n";
+        cout << "----------------------\n";
 
-        cout << "\n[1] Go back\n";
+        cout << "[1] Go back\n";
         int choice;
         if (!(cin >> choice)) {
             cout << "Invalid input! Must be a number.\n";
