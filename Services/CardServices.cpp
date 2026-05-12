@@ -3,7 +3,7 @@
 #include <iostream>
 #include "CardServices.h"
 
-// a getter method to read all cards from the csv file and return them as a vector of Floor objects
+// a getter method to read all cards from the csv file and return them as a vector of cards objects
 std::vector<Card> CardService::getAllCards() {
     std::vector<Card> cards;
     std::ifstream file("cards.csv");
