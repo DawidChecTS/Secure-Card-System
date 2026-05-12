@@ -90,7 +90,7 @@ void AdminInterface::chooseFloor(LogServices& logServices){
             if (choice == 1) {
                 // get logs for this floor
                 std::vector<LogEntry> logs = logServices.getLogsByFloor(floor.name);
-
+                // display logs
                 if (logs.empty()) {
                     cout << "No access history for this floor yet.\n";
                 } else {
@@ -220,19 +220,19 @@ void AdminInterface::createNewUser() {
 
     // valdiate ID
     while (true) {
-    std::cout << "Enter id: ";
-    if (std::cin >> user.id && validationService.isValidId(user.id)) break;
-    std::cout << "Invalid id! Must be a positive number.\n";
-    std::cin.clear();
-    std::cin.ignore(1000, '\n');
+        std::cout << "Enter id: ";
+        if (std::cin >> user.id && validationService.isValidId(user.id)) break;
+        std::cout << "Invalid id! Must be a positive number.\n";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
     }   
 
     // Validate name
     while (true) {
-    std::cout << "Enter name: ";
-    std::cin >> user.name;
-    if (validationService.isNameValid(user.name)) break;
-    std::cout << "Invalid name! Name can not be empty! \n";
+        std::cout << "Enter name: ";
+        std::cin >> user.name;
+        if (validationService.isNameValid(user.name)) break;
+        std::cout << "Invalid name! Name can not be empty! \n";
     } 
 
     // validate email
@@ -255,11 +255,11 @@ void AdminInterface::createNewUser() {
     card.userId = user.id;
 
     while (true) {
-    std::cout << "Enter card id: ";
-    if (std::cin >> card.id && card.id > 0) break;
-    std::cout << "Invalid card id! Must be a positive number.\n";
-    std::cin.clear();
-    std::cin.ignore(1000, '\n');
+        std::cout << "Enter card id: ";
+        if (std::cin >> card.id && card.id > 0) break;
+        std::cout << "Invalid card id! Must be a positive number.\n";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
 }
 
     // validate clearance level

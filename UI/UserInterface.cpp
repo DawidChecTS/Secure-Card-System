@@ -120,12 +120,36 @@ void UserInterface::changeInformation(User& user){
     UserService userService;
     ValidationServices validationService;
 
+    // validate ID
     std::string tempName;
     std::cout << "Enter new name (" << user.name << "): ";
     std::cin.ignore(1000, '\n');
     std::getline(std::cin, tempName);
     user.name = tempName;
 
+    // validate email
+     while (true) {
+        std::string tempEmail;
+        std::cout << "Enter new email (" << user.email << "): ";
+        std::cin >> tempEmail;
+        if (validationService.isValidEmail(tempEmail)) {
+            user.email = tempEmail;
+            break;
+        }
+        std::cout << "Invalid email!\n";
+    }
+    // validate phone number
+     while (true) {
+        std::string tempPhone;
+        std::cout << "Enter new phone (" << user.phonenumber << "): ";
+        std::cin >> tempPhone;
+        if (validationService.isValidPhoneNumber(tempPhone)) {
+            user.phonenumber = tempPhone;
+            break;
+        }
+        std::cout << "Invalid phone!\n";
+    }
+    // update user information
     while (true) {
         std::string tempEmail;
         std::cout << "Enter new email (" << user.email << "): ";
@@ -136,7 +160,7 @@ void UserInterface::changeInformation(User& user){
         }
         std::cout << "Invalid email!\n";
     }
-
+    // validate phone number
     while (true) {
         std::string tempPhone;
         std::cout << "Enter new phone (" << user.phonenumber << "): ";
