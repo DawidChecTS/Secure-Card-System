@@ -44,7 +44,7 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
     for (Floor floor : floors){
         cout << "ID: " << floor.id << '\n';
         cout << "Name: " << floor.name << '\n';
-        cout << "Clearance level: " << floor.clearanceLevel << "\n\n";
+        cout << "Clearance level: " << floor.clearanceLevel << "\n";
         cout << "-------------------------\n";
     }
 
@@ -85,6 +85,16 @@ void UserInterface::showInfoAboutAccount(User user){
     cout << "Phone number: " << user.phonenumber << "\n";
     cout << "Card ID: " << card.id << "\n";
     cout << "Clearance level: " << card.clearanceLevel << "\n";
+    int choice;
+
+    cout << "\n[1] Go back \n";
+    if (!(cin >> choice)) {
+        cout << "Invalid input! Must be a number.\n";
+        cin.clear();
+        cin.ignore(1000, '\n');
+        return;
+    }
+    
 }
 
 void UserInterface::displayUserOperations(){
