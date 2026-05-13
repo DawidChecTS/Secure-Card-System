@@ -32,6 +32,7 @@ User UserInterface::userLogin(){
     }
 }
 
+// a method to list all floors and allow the user to choose one to access
 void UserInterface::listAllFloors(User user, LogServices& logServices){
     FloorServices floorService;
     vector<Floor> floors = floorService.getAllFloors();
@@ -48,30 +49,42 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
         cout << "-------------------------\n";
     }
 
-    cout << "Choose floor id to access: ";
-    int floorChoice;
-    // validate floor choice
-    if (!(cin >> floorChoice)) {
-        cout << "Invalid input! Must be a floor number.\n";
-        cin.clear();
-        cin.ignore(1000, '\n');
-        return;
-    }
+    while (true) { 
+        cout << "[0,1,2,3] Choose which floor id to access\n";
+        cout << "[4] Go back\n";
+        int floorChoice;
 
-    for (Floor floor : floors) {
-        if (floor.id == floorChoice) {
-            // check clearance
-            if (card.clearanceLevel >= floor.clearanceLevel) {
-                cout << "ACCESS GRANTED to " << floor.name << "!\n";
-                logServices.addLog(user.name, floor.name, true); // log if access granted
-            } else {
-                cout << "ACCESS DENIED!\n";
-                logServices.addLog(user.name, floor.name, false); // log if access denied
+        if (!(cin >> floorChoice)) {
+            cout << "Invalid input! Must be a floor number.\n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            continue; 
+        }
+
+        if (floorChoice == 4) return; 
+
+        bool found = false;
+        // check if the chosen floor exists
+        for (Floor floor : floors) {
+            // if it exists, check clearance level
+            if (floor.id == floorChoice) {
+                found = true;
+                if (card.clearanceLevel >= floor.clearanceLevel) {
+                    cout << "ACCESS GRANTED to " << floor.name << "!\n";
+                    logServices.addLog(user.name, floor.name, true);
+                } else {
+                    cout << "ACCESS DENIED!\n";
+                    logServices.addLog(user.name, floor.name, false);
+                }
+                return; // exit after access attempt
             }
-            return;
+        }
+
+        if (!found) {
+            cout << "Floor not found!\n";
+            continue;
         }
     }
-    cout << "Floor not found!\n";
 }
 
 void UserInterface::showInfoAboutAccount(User user){
