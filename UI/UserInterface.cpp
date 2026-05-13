@@ -102,20 +102,12 @@ void UserInterface::showInfoAboutAccount(User user){
         cout << "Card ID: " << card.id << "\n";
         cout << "Clearance level: " << card.clearanceLevel << "\n";
         cout << "----------------------\n";
+        cout << "\n[1] Go back: ";
 
-        cout << "[1] Go back\n";
-        int choice;
-        if (!(cin >> choice)) {
-            cout << "Invalid input! Must be a number.\n";
-            cin.clear();
-            cin.ignore(1000, '\n');
-            continue;
-        }
+        int choice = maininterface.validateUserInput();
 
-        if (choice == 1) {
-            return; // go back to previous menu
-        }
-
+        if (choice == -1) continue;
+        if (choice == 1) return;
         cout << "Invalid choice!\n";
     }
 }

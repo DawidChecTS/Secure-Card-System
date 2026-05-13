@@ -9,9 +9,7 @@ void MainInterface::headline(){
 }
 
 void MainInterface::showMainMenu(){
-
     headline();
-    
     displayEnteringOptions();
 }
 
@@ -52,7 +50,7 @@ int MainInterface::validateUserInput(){
             return -1;
         }
     }
-
+    // convert string to integer and check if it's a valid choice
     try {
         int b = stoi(input);
         if (!isUserChoiceValidNumber(b)) {
