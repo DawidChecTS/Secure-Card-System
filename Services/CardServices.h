@@ -10,6 +10,7 @@ class CardService {
         void saveCard(Card card);
         Card findCardByUserId(int userId);
         void deleteCardByUserId(int userId);
+        Card findCardById(int id);
 };
 
 #endif

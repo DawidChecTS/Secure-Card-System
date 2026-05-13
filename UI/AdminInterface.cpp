@@ -256,11 +256,16 @@ void AdminInterface::createNewUser() {
 
     while (true) {
         std::cout << "Enter card id: ";
-        if (std::cin >> card.id && card.id > 0) break;
-        std::cout << "Invalid card id! Must be a positive number.\n";
-        std::cin.clear();
-        std::cin.ignore(1000, '\n');
-}
+        if (std::cin >> card.id && card.id > 0) {
+            Card existing = cardService.findCardById(card.id); // 👈 check if id exists
+            if (existing.id == 0) break; // 0 means not found = id is free
+            std::cout << "Card id already exists! Choose another.\n";
+        } else {
+            std::cout << "Invalid card id! Must be a positive number.\n";
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+        }
+    }
 
     // validate clearance level
     while (true) {
@@ -279,3 +284,4 @@ void AdminInterface::createNewUser() {
     cardService.saveCard(card);
     std::cout << "User created successfully!\n";
 }
+

@@ -98,3 +98,12 @@ void CardService::deleteCardByUserId(int userId) {
     std::cout << "Card not found!\n";
     }
 }
+
+// a method to find a card by its ID and return it as a card object
+Card CardService::findCardById(int id) {
+    std::vector<Card> cards = getAllCards();
+    for (Card card : cards) {
+        if (card.id == id) return card;
+    }
+    return Card{};
+}
