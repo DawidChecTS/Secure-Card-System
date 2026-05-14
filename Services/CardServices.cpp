@@ -107,3 +107,14 @@ Card CardService::findCardById(int id) {
     }
     return Card{};
 }
+
+Card CardService::findCardByAdminId(int adminId) {
+    std::vector<Card> cards = getAllCards();
+    // admin cards start from id 1000
+    for (Card card : cards) {
+        if (card.userId == adminId && card.id >= 1000) {
+            return card;
+        }
+    }
+    return Card{};
+}

@@ -6,9 +6,11 @@
 struct Admin {
     int id;
     std::string name;
+    std::string email;
+    std::string phonenumber;
     std::string password;
+    std::string card;
     std::string role;
-
 };
 
 #endif

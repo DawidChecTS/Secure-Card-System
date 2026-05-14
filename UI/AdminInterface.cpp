@@ -14,6 +14,7 @@ bool AdminInterface::adminLogin(){
     int id;
     string password;
     MainInterface maininterface;
+    ValidationServices validationService;
 
     maininterface.headline();
     cout << "* Admin login *\n";
@@ -27,8 +28,15 @@ bool AdminInterface::adminLogin(){
         cin.ignore(1000, '\n');
     }
 
-    cout << "Enter password: ";
-    cin >> password;
+    // validate password format
+    // validationService will check if the password valid before checking the csv file
+    // not specified in the requirements
+    while (true) {
+        cout << "Enter password: ";
+        cin >> password;
+        if (validationService.isValidPassword(password)) break;
+        cout << "Invalid password format! Must be at least 8 characters, with 1 uppercase, 1 lowercase, 1 number and 1 special character.\n";
+    }
 
     AdminServices adminservices;
     Admin admin = adminservices.findAdmin(id, password);

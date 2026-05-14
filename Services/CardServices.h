@@ -11,6 +11,7 @@ class CardService {
         Card findCardByUserId(int userId);
         void deleteCardByUserId(int userId);
         Card findCardById(int id);
+        Card findCardByAdminId(int adminId);
 };
 
 #endif

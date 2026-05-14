@@ -20,9 +20,12 @@ Admin AdminServices::findAdmin(int id, std::string password) {
 
         // Parse the line into admin fields
         std::getline(ss, adminId, ',');
-        admin.id = std::stoi(adminId); // convert string to integer
+        admin.id = std::stoi(adminId);
         std::getline(ss, admin.name, ',');
+        std::getline(ss, admin.email, ',');
+        std::getline(ss, admin.phonenumber, ',');
         std::getline(ss, admin.password, ',');
+        std::getline(ss, admin.card, ',');
         std::getline(ss, admin.role, ',');
 
         // check if both id AND password match
