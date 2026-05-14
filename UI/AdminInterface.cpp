@@ -287,7 +287,7 @@ void AdminInterface::createNewUser() {
     while (true) {
         std::cout << "Enter card id: ";
         if (std::cin >> card.id && card.id > 0) {
-            Card existing = cardService.findCardById(card.id); // 👈 check if id exists
+            Card existing = cardService.findCardById(card.id); // check if card id already exists
             if (existing.id == 0) break; // 0 means not found = id is free
             std::cout << "Card id already exists! Choose another.\n";
         } else {

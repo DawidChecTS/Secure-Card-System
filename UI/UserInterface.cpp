@@ -41,7 +41,7 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
     MainInterface maininterface;
     maininterface.headline();
     cout << "\n All floors: \n";
-
+ 
     for (Floor floor : floors){
         cout << "ID: " << floor.id << '\n';
         cout << "Name: " << floor.name << '\n';
@@ -54,6 +54,7 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
         cout << "[4] Go back\n";
         int floorChoice;
 
+        // validate user input
         if (!(cin >> floorChoice)) {
             cout << "\n Invalid input! Must be a floor number.\n";
             cin.clear();
@@ -158,6 +159,7 @@ void UserInterface::changeInformation(User& user){
         std::cout << "Invalid email!\n";
     }
 
+    // validate phone number
     while (true) {
         std::string tempPhone;
         std::cout << "Enter new phone (" << user.phonenumber << "): ";
