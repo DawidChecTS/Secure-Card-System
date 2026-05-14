@@ -92,8 +92,16 @@ void AdminInterface::chooseFloor(LogServices& logServices){
             cout << "\n[1] View access history\n";
             cout << "[2] Change floor information\n";
             cout << "[3] Back\n";
+
             int choice;
             cin >> choice;
+
+            if (!(cin >> choice)) {
+                cout << "Invalid input! Must be a number.\n";
+                cin.clear();
+                cin.ignore(1000, '\n');
+                return; // go back to admin menu
+            }
 
             if (choice == 1) {
                 // get logs for this floor

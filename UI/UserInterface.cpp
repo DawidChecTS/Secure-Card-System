@@ -55,7 +55,7 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
         int floorChoice;
 
         if (!(cin >> floorChoice)) {
-            cout << "Invalid input! Must be a floor number.\n";
+            cout << "\n Invalid input! Must be a floor number.\n";
             cin.clear();
             cin.ignore(1000, '\n');
             continue; 
