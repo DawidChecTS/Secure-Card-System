@@ -70,10 +70,10 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
             if (floor.id == floorChoice) {
                 found = true;
                 if (card.clearanceLevel >= floor.clearanceLevel) {
-                    cout << "ACCESS GRANTED to " << floor.name << "!\n";
+                    cout << "ACCESS GRANTED \n";
                     logServices.addLog(user.name, floor.name, true);
                 } else {
-                    cout << "ACCESS DENIED!\n";
+                    cout << "ACCESS DENIED! Your clearance level is too low.\n";
                     logServices.addLog(user.name, floor.name, false);
                 }
                 return; // exit after access attempt

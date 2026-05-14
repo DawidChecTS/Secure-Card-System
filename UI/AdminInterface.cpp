@@ -148,8 +148,17 @@ void AdminInterface::listAllUsersView(){
     cout << "\n[1] Delete a user\n";
     cout << "[2] Change user information\n";
     cout << "[3] Back\n";
+
+    MainInterface maininterface;
+
     int choice;
-    cin >> choice;
+    // validate user input
+    while (true) {
+        choice = maininterface.validateUserInput();
+        if (choice == -1) continue;
+        if (choice >= 1 && choice <= 3) break;
+        cout << "Invalid choice!\n";
+}
 
     if (choice == 1) {
         int id;
