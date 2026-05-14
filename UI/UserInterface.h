@@ -7,7 +7,7 @@ class UserInterface{
     public :
         User userLogin();
         void displayUserOperations();
-        void showInfoAboutAccount(User user);
+        void showInfoAboutAccount(User& user);
         void listAllFloors(User user, LogServices& logServices);
         void changeInformation(User& user);
 };

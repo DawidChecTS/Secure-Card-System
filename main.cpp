@@ -44,9 +44,6 @@ int main(){
                     userinterface.showInfoAboutAccount(loggedInUser);
                 }
                 else if (userChoice == 3) {
-                    userinterface.changeInformation(loggedInUser);
-                }
-                else if (userChoice == 4) {
                     maininterface.printLogOut();
                     break;
                 }

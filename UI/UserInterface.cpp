@@ -87,11 +87,11 @@ void UserInterface::listAllFloors(User user, LogServices& logServices){
     }
 }
 
-void UserInterface::showInfoAboutAccount(User user){
+void UserInterface::showInfoAboutAccount(User& user){
     MainInterface maininterface;
     Card card = CardService().findCardByUserId(user.id);
 
-     while (true) {
+    while (true) {
         maininterface.headline();
 
         cout << "\nYour account:\n";
@@ -102,13 +102,21 @@ void UserInterface::showInfoAboutAccount(User user){
         cout << "Card ID: " << card.id << "\n";
         cout << "Clearance level: " << card.clearanceLevel << "\n";
         cout << "----------------------\n";
-        cout << "\n[1] Go back: ";
+        cout << "[1] Change information\n";
+        cout << "[2] Go back\n";
 
         int choice = maininterface.validateUserInput();
 
         if (choice == -1) continue;
-        if (choice == 1) return;
-        cout << "Invalid choice!\n";
+        else if (choice == 1) {
+            changeInformation(user);
+        }
+        else if (choice == 2) {
+            return;
+        }
+        else {
+            cout << "Invalid choice!\n";
+        }
     }
 }
 
@@ -119,8 +127,7 @@ void UserInterface::displayUserOperations(){
     cout << "\n";
     cout << "[1] List all available floors \n";
     cout << "[2] Show personal information \n";
-    cout << "[3] Change personal information \n";
-    cout << "[4] Log out \n"; 
+    cout << "[3] Log out \n"; 
 }
 
 void UserInterface::changeInformation(User& user){
