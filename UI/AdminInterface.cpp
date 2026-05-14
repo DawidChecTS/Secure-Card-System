@@ -221,10 +221,15 @@ void AdminInterface::createNewUser() {
     // valdiate ID
     while (true) {
         std::cout << "Enter id: ";
-        if (std::cin >> user.id && validationService.isValidId(user.id)) break;
+    if (std::cin >> user.id && validationService.isValidId(user.id)) {
+        UserService userService;
+        if (!userService.isIdTaken(user.id)) break;
+        std::cout << "ID already exists! Choose another.\n";
+    } else {
         std::cout << "Invalid id! Must be a positive number.\n";
         std::cin.clear();
         std::cin.ignore(1000, '\n');
+    }
     }   
 
     // Validate name

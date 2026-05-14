@@ -144,3 +144,11 @@ void UserService::updateUser(User updatedUser) {
         std::cout << "User not found!\n";
     }
 }
+
+bool UserService::isIdTaken(int id) {
+    std::vector<User> users = getAllUsers();
+    for (User user : users) {
+        if (user.id == id) return true;
+    }
+    return false;
+}

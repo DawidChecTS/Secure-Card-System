@@ -11,5 +11,6 @@ class UserService {
         User findUser(std::string input);
         void deleteUser(int id);
         void updateUser(User updatedUser);
+        bool isIdTaken(int id);
 };
 #endif
