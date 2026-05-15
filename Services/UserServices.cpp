@@ -16,6 +16,7 @@ std::ifstream file("users.csv");
     // read each line of the file, create a User object, and add it to the list
     std::string line;
     while (std::getline(file, line)) {
+        if (line.empty()) continue; // skip empty lines
         std::stringstream ss(line);
         User user;
         std::string id;
@@ -50,6 +51,7 @@ void UserService::saveUser(User user) {
          << user.phonenumber << ','
          << user.role << '\n';
 
+    std::cout << "User saved successfully!\n";
     file.close();
 }
 

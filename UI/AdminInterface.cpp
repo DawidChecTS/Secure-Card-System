@@ -94,8 +94,6 @@ void AdminInterface::chooseFloor(LogServices& logServices){
             cout << "[3] Back\n";
 
             int choice;
-            cin >> choice;
-
             if (!(cin >> choice)) {
                 cout << "Invalid input! Must be a number.\n";
                 cin.clear();
@@ -177,16 +175,20 @@ void AdminInterface::listAllUsersView(){
 }
 
     if (choice == 1) {
-        int id;
+            int id;
+    // validate id input
+    while (true) {
         std::cout << "Enter user id to delete: ";
-        std::cin >> id;
-        userservice.deleteUser(id);
-
-        // delete the card associated with this user too
-        CardService cardService;
-        cardService.deleteCardByUserId(id);
-        std::cout << "User has been deleted!\n";
+        if (std::cin >> id) break;
+        std::cout << "Invalid id! Must be a number.\n";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
     }
+    userservice.deleteUser(id);
+    CardService cardService;
+    cardService.deleteCardByUserId(id);
+    }
+
     else if (choice == 2) {
         int id;
         std::cout << "Enter user id to change: ";
@@ -249,12 +251,12 @@ void AdminInterface::createNewUser() {
     if (std::cin >> user.id && validationService.isValidId(user.id)) {
         UserService userService;
         if (!userService.isIdTaken(user.id)) break;
-        std::cout << "ID already exists! Choose another.\n";
+        std::cout << "ID already exists!\n";
     } else {
-        std::cout << "Invalid id! Must be a positive number.\n";
+        std::cout << "Invalid id! \n";
         std::cin.clear();
         std::cin.ignore(1000, '\n');
-    }
+        }
     }   
 
     // Validate name
@@ -262,7 +264,7 @@ void AdminInterface::createNewUser() {
         std::cout << "Enter name: ";
         std::cin >> user.name;
         if (validationService.isNameValid(user.name)) break;
-        std::cout << "Invalid name! Name can not be empty! \n";
+        std::cout << " Name can not be empty! \n";
     } 
 
     // validate email
@@ -284,14 +286,15 @@ void AdminInterface::createNewUser() {
     Card card;
     card.userId = user.id;
 
+    // validate card id
     while (true) {
         std::cout << "Enter card id: ";
         if (std::cin >> card.id && card.id > 0) {
             Card existing = cardService.findCardById(card.id); // check if card id already exists
             if (existing.id == 0) break; // 0 means not found = id is free
-            std::cout << "Card id already exists! Choose another.\n";
+            std::cout << "Card id already exists! \n";
         } else {
-            std::cout << "Invalid card id! Must be a positive number.\n";
+            std::cout << "Invalid card id! \n";
             std::cin.clear();
             std::cin.ignore(1000, '\n');
         }
@@ -309,9 +312,9 @@ void AdminInterface::createNewUser() {
         std::cin.ignore(1000, '\n');
     }
 
+    // save user and card
     UserService userService;
     userService.saveUser(user);
     cardService.saveCard(card);
-    std::cout << "User created successfully!\n";
 }
 
